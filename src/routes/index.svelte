@@ -220,8 +220,8 @@ fastMutableMap.update(($v) => {'{'}
 	button {
 		font-weight: bold;
 		font-size: 1.5em;
-		color: #339;
-		border: 2px solid #339;
+		color: var(--orange);
+		border: 2px solid var(--orange);
 	}
 	.count {
 		background-color: hsl(var(--hue), 70%, 90%);
