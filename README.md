@@ -1,6 +1,6 @@
 # svelte-mutable-store
 
-> using mutable values in Svelte stores with the immutable compiler flag
+> using mutable values in Svelte stores with the immutable compiler option
 
 > **work in progress**: experimental
 
@@ -16,7 +16,7 @@
 > [spiderspace.github.io/svelte-mutable-store](https://spiderspace.github.io/svelte-mutable-store),
 > and see also [this REPL](https://svelte.dev/repl/0d7852935b2247a89cb04255f374a309?version=3.46.1)
 
-The [`immutable` compiler flag](https://svelte.dev/docs#compile-time-svelte-compile),
+The [`immutable` compiler option](https://svelte.dev/docs#compile-time-svelte-compile),
 which is `false` by default in Svelte and SvelteKit,
 can sometimes improve performance as demonstrated in
 [the official example](https://svelte.dev/examples/immutable-data).
@@ -49,7 +49,7 @@ You can enable immutability globally and opt out on a per-component basis, or vi
 but this is error prone and adds a lot of mental overhead,
 and it loses the efficiency of the `immutable` option for the rest of the component.
 
-Can we get the best of both worlds, and keep the immutable flag enabled globally
+Can we get the best of both worlds, and keep the immutable option enabled globally
 while treating the collections as reactive mutable values?
 
 ## solution?
@@ -84,7 +84,7 @@ and there's also
 
 ## more info
 
-It's both a niche and advanced topic,
+This is both a niche and advanced topic,
 particularly because Svelte defaults to `immutable: false`.
 Many developers don't know or care about it,
 and the usecase motivating these stores is niche.

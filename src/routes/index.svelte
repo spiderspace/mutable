@@ -19,14 +19,14 @@
 	<header>
 		<h1>svelte-mutable-store</h1>
 		<blockquote>
-			how to efficiently wrap mutable values with the <code>immutable={'{'}true}</code> compiler flag
+			using mutable values in Svelte stores with the <code>immutable</code> compiler flag
 		</blockquote>
 	</header>
 
 	<button
 		on:click={() => {
 			// A. A `writable` store that doesn't work because
-			// it tries to mutate with under the `immutable=true` compiler flag.
+			// it tries to mutate with under the `immutable=true` compiler option.
 			$writableMap.set('a', $writableMap.get('a') + 1);
 			$writableMap = $writableMap;
 
