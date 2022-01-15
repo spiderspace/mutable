@@ -7,17 +7,17 @@
 
 		
 
-		<link rel="modulepreload" href="/svelte-mutable-store/_app/start-bff12332.js">
+		<link rel="modulepreload" href="/svelte-mutable-store/_app/start-341e1434.js">
 		<link rel="modulepreload" href="/svelte-mutable-store/_app/chunks/vendor-7ffe92ef.js">
 		<link rel="modulepreload" href="/svelte-mutable-store/_app/chunks/paths-28a87002.js">
 		<link rel="modulepreload" href="/svelte-mutable-store/_app/pages/__layout.svelte-ec4c8acc.js">
-		<link rel="modulepreload" href="/svelte-mutable-store/_app/pages/index.svelte-9e84db8e.js">
+		<link rel="modulepreload" href="/svelte-mutable-store/_app/pages/index.svelte-4e105f6e.js">
 		<link rel="stylesheet" href="/svelte-mutable-store/_app/assets/start-61d1577b.css">
 		<link rel="stylesheet" href="/svelte-mutable-store/_app/assets/pages/__layout.svelte-9b0f5d2e.css">
-		<link rel="stylesheet" href="/svelte-mutable-store/_app/assets/pages/index.svelte-c900ab79.css">
+		<link rel="stylesheet" href="/svelte-mutable-store/_app/assets/pages/index.svelte-5c0ba2cd.css">
 
 		<script type="module">
-			import { start } from "/svelte-mutable-store/_app/start-bff12332.js";
+			import { start } from "/svelte-mutable-store/_app/start-341e1434.js";
 			start({
 				target: document.body,
 				paths: {"base":"/svelte-mutable-store","assets":""},
@@ -31,7 +31,7 @@
 					error: null,
 					nodes: [
 						import("/svelte-mutable-store/_app/pages/__layout.svelte-ec4c8acc.js"),
-						import("/svelte-mutable-store/_app/pages/index.svelte-9e84db8e.js")
+						import("/svelte-mutable-store/_app/pages/index.svelte-4e105f6e.js")
 					],
 					page: {
 						host: location.host, // TODO this is redundant
@@ -49,77 +49,77 @@
 
 
 
-<main class="markup column svelte-1kjjogv"><header><h1 class="svelte-1kjjogv"><a href="https://github.com/spiderspace/svelte-mutable-store">svelte-mutable-store</a></h1>
-		<blockquote>using mutable values in Svelte stores with the <code class="svelte-1kjjogv">immutable</code> compiler flag.
+<main class="markup column svelte-6leo9j"><header><h1 class="svelte-6leo9j"><a href="https://github.com/spiderspace/svelte-mutable-store">svelte-mutable-store</a></h1>
+		<blockquote>using mutable values in Svelte stores with the <code class="svelte-6leo9j">immutable</code> compiler flag.
 			<a href="https://github.com/spiderspace/svelte-mutable-store">learn more on GitHub</a></blockquote></header>
 
-	<button class="svelte-1kjjogv">click me to make number++ go up
+	<button class="svelte-6leo9j">click me to make number++ go up
 	</button>
 
-	<h2 class="svelte-1kjjogv">A. <code class="svelte-1kjjogv">writable</code> store (broken! D:)
+	<h2 class="svelte-6leo9j">A. <code class="svelte-6leo9j">writable</code> store (broken! D:)
 	</h2>
-	<section style="--hue: 37;"><div><span class="count svelte-1kjjogv">1</span>
-			← fails to update as a <code class="svelte-1kjjogv">writable</code> store because <code class="svelte-1kjjogv">immutable={true}</code></div>
-		<pre class="panel-inset svelte-1kjjogv">$writableMap.set(&#39;a&#39;, $writableMap.get(&#39;a&#39;) + 1);
+	<section style="--hue: 37;"><div><span class="count svelte-6leo9j">1</span>
+			← fails to update as a <code class="svelte-6leo9j">writable</code> store because <code class="svelte-6leo9j">immutable={true}</code></div>
+		<pre class="panel-inset svelte-6leo9j">$writableMap.set(&#39;a&#39;, $writableMap.get(&#39;a&#39;) + 1);
 $writableMap = $writableMap;
 		</pre></section>
 
-	<h2 class="svelte-1kjjogv">B. cloned <code class="svelte-1kjjogv">writable</code> store
+	<h2 class="svelte-6leo9j">B. cloned <code class="svelte-6leo9j">writable</code> store
 	</h2>
-	<section style="--hue: 37;"><div><span class="count svelte-1kjjogv">1</span>
+	<section style="--hue: 37;"><div><span class="count svelte-6leo9j">1</span>
 			← works, but causes heart pain and in some cases tremendous garbage and slowness
 		</div>
-		<pre class="panel-inset svelte-1kjjogv">$writableMapCloned.set(&#39;a&#39;, $writableMapCloned.get(&#39;a&#39;) + 1);
+		<pre class="panel-inset svelte-6leo9j">$writableMapCloned.set(&#39;a&#39;, $writableMapCloned.get(&#39;a&#39;) + 1);
 $writableMapCloned = new Map($writableMapCloned);
 		</pre></section>
 
-	<blockquote>in the examples below, notice that you need to access <code class="svelte-1kjjogv">.value</code> for reads, unlike above
+	<blockquote>in the examples below, notice that you need to access <code class="svelte-6leo9j">.value</code> for reads, unlike above
 	</blockquote>
 
-	<h2 class="svelte-1kjjogv">C. <code class="svelte-1kjjogv">derived</code> from <code class="svelte-1kjjogv">writable</code> store
+	<h2 class="svelte-6leo9j">C. <code class="svelte-6leo9j">derived</code> from <code class="svelte-6leo9j">writable</code> store
 	</h2>
-	<section style="--hue: 37;"><div><span class="count svelte-1kjjogv">1</span>
+	<section style="--hue: 37;"><div><span class="count svelte-6leo9j">1</span>
 			← works with no new libraries, and doesn&#39;t clone the map, but we&#39;re juggling two stores, one for
 			writes and one for reads, and it creates garbage every change
 		</div>
-		<pre class="panel-inset svelte-1kjjogv">const derivedWritableMap = derived(writableMap, ($v) =&gt; ({value: $v}));
+		<pre class="panel-inset svelte-6leo9j">const derivedWritableMap = derived(writableMap, ($v) =&gt; ({value: $v}));
 		</pre></section>
 
-	<h2 class="svelte-1kjjogv">D. <code class="svelte-1kjjogv">mutable</code> store
+	<h2 class="svelte-6leo9j">D. <code class="svelte-6leo9j">mutable</code> store
 	</h2>
-	<section style="--hue: 37;"><div><span class="count svelte-1kjjogv">1</span>
-			← works because it&#39;s a <code class="svelte-1kjjogv">mutable</code> store; doesn&#39;t clone the map; however notice that
-			you need to access <code class="svelte-1kjjogv">.value</code></div>
-		<pre class="panel-inset svelte-1kjjogv">mutableMap.update(($v) =&gt; {
+	<section style="--hue: 37;"><div><span class="count svelte-6leo9j">1</span>
+			← works because it&#39;s a <code class="svelte-6leo9j">mutable</code> store; doesn&#39;t clone the map; however notice that
+			you need to access <code class="svelte-6leo9j">.value</code></div>
+		<pre class="panel-inset svelte-6leo9j">mutableMap.update(($v) =&gt; {
 	$v.set(&#39;a&#39;, $v.get(&#39;a&#39;) + 1);
 });
 		</pre></section>
 
-	<h2 class="svelte-1kjjogv">E. <code class="svelte-1kjjogv">mutable</code> store antipattern
+	<h2 class="svelte-6leo9j">E. <code class="svelte-6leo9j">mutable</code> store antipattern
 	</h2>
-	<section style="--hue: 37;"><div><span class="count svelte-1kjjogv">1</span>
-			← works because it&#39;s a <code class="svelte-1kjjogv">mutable</code> store, but mutates the value directly and then
-			manually calls <code class="svelte-1kjjogv">.update()</code>, which seems like an antipattern
+	<section style="--hue: 37;"><div><span class="count svelte-6leo9j">1</span>
+			← works because it&#39;s a <code class="svelte-6leo9j">mutable</code> store, but mutates the value directly and then
+			manually calls <code class="svelte-6leo9j">.update()</code>, which seems like an antipattern
 		</div>
-		<pre class="panel-inset svelte-1kjjogv">$mutableMapAntipattern.value.set(&#39;a&#39;, $mutableMapAntipattern.value.get(&#39;a&#39;) + 1);
+		<pre class="panel-inset svelte-6leo9j">$mutableMapAntipattern.value.set(&#39;a&#39;, $mutableMapAntipattern.value.get(&#39;a&#39;) + 1);
 mutableMapAntipattern.update();
 		</pre></section>
 
-	<h2 class="svelte-1kjjogv">F. <code class="svelte-1kjjogv">fastMutable</code> store
+	<h2 class="svelte-6leo9j">F. <code class="svelte-6leo9j">fastMutable</code> store
 	</h2>
-	<section style="--hue: 37;"><div><span class="count svelte-1kjjogv">1</span>
-			← works because it&#39;s a <code class="svelte-1kjjogv">fastMutable</code> store, which compared to
-			<code class="svelte-1kjjogv">mutable</code> is slightly more efficient because it swaps between two stable object references,
+	<section style="--hue: 37;"><div><span class="count svelte-6leo9j">1</span>
+			← works because it&#39;s a <code class="svelte-6leo9j">fastMutable</code> store, which compared to
+			<code class="svelte-6leo9j">mutable</code> is slightly more efficient because it swaps between two stable object references,
 			but it doesn&#39;t compose as an immutable value stream
 		</div>
-		<pre class="panel-inset svelte-1kjjogv">fastMutableMap.update(($v) =&gt; {
+		<pre class="panel-inset svelte-6leo9j">fastMutableMap.update(($v) =&gt; {
 	$v.set(&#39;a&#39;, $v.get(&#39;a&#39;) + 1);
 });
 		</pre></section>
 
 	<hr>
 
-	<h2 class="svelte-1kjjogv">notes:</h2>
+	<h2 class="svelte-6leo9j">notes:</h2>
 	<ul><li>Why care about the immutable option? See this example: <a href="https://svelte.dev/examples/immutable-data">https://svelte.dev/examples/immutable-data</a></li>
 		<li>The usecases motivating these stores: large maps and other collections (often containing
 			stores) for complex client-side indexing.
@@ -127,17 +127,17 @@ mutableMapAntipattern.update();
 		<li>Can we solve this problem with a better pattern than these custom stores? Am I missing
 			something?
 		</li>
-		<li>Is <code class="svelte-1kjjogv">fastMutable</code>&#39;s strategy of swapping between two stable references a dangerous
+		<li>Is <code class="svelte-6leo9j">fastMutable</code>&#39;s strategy of swapping between two stable references a dangerous
 			footgun? It doesn&#39;t compose with code that expects every change to be referentially unique.
-			Should the <code class="svelte-1kjjogv">mutable</code> implementation be preferred in all cases?
+			Should the <code class="svelte-6leo9j">mutable</code> implementation be preferred in all cases?
 		</li>
-		<li>Are there bettes names than <code class="svelte-1kjjogv">mutable</code> and <code class="svelte-1kjjogv">fastMutable</code>?
+		<li>Are there bettes names than <code class="svelte-6leo9j">mutable</code> and <code class="svelte-6leo9j">fastMutable</code>?
 		</li>
-		<li>Add a <code class="svelte-1kjjogv">set</code> store method? Probably useful for <code class="svelte-1kjjogv">bind:</code> usage in some cases
+		<li>Add a <code class="svelte-6leo9j">set</code> store method? Probably useful for <code class="svelte-6leo9j">bind:</code> usage in some cases
 			and less code than `update` to replace references.
 		</li></ul>
 	<hr>
-	<footer class="svelte-1kjjogv"><a href="https://github.com/spiderspace/svelte-mutable-store">public domain source code on GitHub
+	<footer class="svelte-6leo9j"><a href="https://github.com/spiderspace/svelte-mutable-store">public domain source code on GitHub
 		</a></footer>
 </main>
 
