@@ -32,25 +32,27 @@ Many Svelte developers prefer to write code that mutates objects,
 and the language makes this very terse, like binding to store properties.
 (e.g. `<input bind:value={$store.text} />`)
 
-Another such usecase where immutability causes friction
-is with large arrays, maps, and other collections. (perhaps containing stores as values)
-Let's say we want reactivity when those collections change.
+Immutability also causes problems with large arrays, maps, and other collections.
+Let's say we want reactivity when those collections change and we have `immutable` enabled.
 Treating them as immutable and cloning on every change
 can cause performance problems when the collections grow large.
+This is the motivating usecase for this project: large JS collections like `Map`s and arrays.
 
 We could use a library with immutable data structures (perhaps with efficient structural sharing),
 but then we're no longer using plain JS values
 and our related code and familiar patterns may be incompatible.
-(although libraries like [immer](https://github.com/immerjs/immer)
-make the code _mostly_ compatible, it's not efficient for large collections;
-we want to avoid copying large data structures)
+Libraries like [Immutable.js](https://github.com/immutable-js/immutable-js/)
+have APIs that diverge from plain JS data structures, and they're not light dependencies.
+Libraries like [immer](https://github.com/immerjs/immer)
+make our normal JS code _mostly_ compatible, but they're inefficient for large collections;
+we want to avoid copying large data structures.
 
-You can enable immutability globally and opt out on a per-component basis, or vice versa,
+We could try to enable `immutable` globally and opt out on a per-component basis, or vice versa,
 but this is error prone and adds a lot of mental overhead,
 and it loses the efficiency of the `immutable` option for the rest of the component.
 
-Can we get the best of both worlds, and keep the immutable option enabled globally
-while treating the collections as reactive mutable values?
+Is there a sweet spot for this use case? Can we enable the immutable option globally
+while treating large collections as reactive mutable values?
 
 ## solution?
 
@@ -81,6 +83,10 @@ and there's also
 - see also
   - [Twitter poll](https://twitter.com/ryanatkn/status/1482390036943360010)
     asking users if they use `immutable`
+
+## alternatives?
+
+- lightweight immutable data structures for maps and arrays that have structural sharing?
 
 ## more info
 
