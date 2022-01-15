@@ -2,6 +2,7 @@
   "name": "svelte-mutable-store",
   "description": "using mutable values in Svelte stores with the immutable compiler flag",
   "version": "0.0.1",
+  "license": "Unlicense",
   "type": "module",
   "engines": {
     "node": ">= 16.6"
