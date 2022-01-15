@@ -15,7 +15,7 @@
 	const toHue = (count: number) => count * 37 + '';
 </script>
 
-<main class="markup">
+<main class="markup column">
 	<header>
 		<h1><a href="https://github.com/spiderspace/svelte-mutable-store">svelte-mutable-store</a></h1>
 		<blockquote>
@@ -201,12 +201,9 @@ fastMutableMap.update(($v) => {'{'}
 
 <style>
 	main {
-		/* TODO should these be on `.column` ? */
 		display: flex;
 		flex-direction: column;
 		margin: 0 auto;
-		/* TODO should `.column` have no min width? doesn't layout well for mobile! */
-		max-width: var(--column_width);
 	}
 	h1 {
 		text-align: center;
