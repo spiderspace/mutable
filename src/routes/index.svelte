@@ -17,10 +17,10 @@
 
 <main class="markup column">
 	<header>
-		<h1><a href="https://github.com/spiderspace/svelte-mutable-store">svelte-mutable-store</a></h1>
+		<h1><a href="https://github.com/spiderspace/svelte-mutable">svelte-mutable</a></h1>
 		<blockquote>
 			using mutable values in Svelte stores with the <code>immutable</code> compiler flag.
-			<a href="https://github.com/spiderspace/svelte-mutable-store">learn more on GitHub</a>
+			<a href="https://github.com/spiderspace/svelte-mutable">learn more on GitHub</a>
 		</blockquote>
 	</header>
 
@@ -193,9 +193,7 @@ fastMutableMap.update(($v) => {'{'}
 	</ul>
 	<hr />
 	<footer>
-		<a href="https://github.com/spiderspace/svelte-mutable-store"
-			>public domain source code on GitHub
-		</a>
+		<a href="https://github.com/spiderspace/svelte-mutable">public domain source code on GitHub </a>
 	</footer>
 </main>
 
