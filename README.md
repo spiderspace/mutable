@@ -16,37 +16,90 @@
 > [spiderspace.github.io/svelte-mutable-store](https://spiderspace.github.io/svelte-mutable-store),
 > and see also [this REPL](https://svelte.dev/repl/0d7852935b2247a89cb04255f374a309?version=3.46.1)
 
-The `immutable` compiler flag, which is `false` by default in Svelte and SvelteKit,
-can sometimes improve performance as demonstrated in this official example:
-https://svelte.dev/examples/immutable-data
+The [`immutable` compiler flag](https://svelte.dev/docs#compile-time-svelte-compile),
+which is `false` by default in Svelte and SvelteKit,
+can sometimes improve performance as demonstrated in
+[the official example](https://svelte.dev/examples/immutable-data).
 
-You can enable it app-wide in SvelteKit through the config's `compilerOptions`:
-see https://kit.svelte.dev/docs#configuration
-and https://svelte.dev/docs#compile-time-svelte-compile
+You can enable it app-wide in SvelteKit with
+[the config's `compilerOptions`](https://kit.svelte.dev/docs#configuration)
+or locally per component
+[with `<svelte:options>`](https://svelte.dev/docs#template-syntax-svelte-options).
 
-Sounds great, right? The problem is immutability doesn't work by default with some patterns.
-One such usecase I've encountered is with large arrays, maps, and similar collections.
-I want reactivity when those collections change, but treating them as immutable,
-and cloning on every change, is not a good solution when the collections grow large.
-I could use a library that adds immutable data structures with efficient structural sharing,
-but then we're no longer using plain JS values, and our related code may be incompatible.
+Better performance you say? Sounds great, right?
+The problem is immutability is incompatible with some patterns.
+Many Svelte developers prefer to write code that mutates objects,
+and the language makes this very terse, like binding to store properties.
+(e.g. `<input bind:value={$store.text} />`)
+
+Another such usecase where immutability causes friction
+is with large arrays, maps, and other collections. (perhaps containing stores as values)
+Let's say we want reactivity when those collections change.
+Treating them as immutable and cloning on every change
+can cause performance problems when the collections grow large.
+
+We could use a library with immutable data structures (perhaps with efficient structural sharing),
+but then we're no longer using plain JS values
+and our related code and familiar patterns may be incompatible.
+(although libraries like [immer](https://github.com/immerjs/immer)
+make the code _mostly_ compatible, it's not efficient for large collections;
+we want to avoid copying large data structures)
 
 You can enable immutability globally and opt out on a per-component basis, or vice versa,
-but this is error prone and adds a lot of mental overhead.
+but this is error prone and adds a lot of mental overhead,
+and it loses the efficiency of the `immutable` option for the rest of the component.
+
 Can we get the best of both worlds, and keep the immutable flag enabled globally
 while treating the collections as reactive mutable values?
 
-This REPL demonstrates two custom stores to help solve this problem.
-The solutions are imperfect and I could use some help and feedback.
-There are additional notes and questions at the end of the page.
+## solution?
 
-example: https://svelte.dev/examples/immutable-data
+This project demonstrates two custom stores to help solve this problem:
+[`mutable`](/src/lib/mutable.ts) and
+[`fastMutable`](src/lib/fastMutable.ts).
+The solutions are a WIP and I could use some help and feedback.
+There are additional notes and questions below.
 
-the `immutable` compiler option: https://svelte.dev/docs#template-syntax-svelte-options
+The code is deployed to
+[spiderspace.github.io/svelte-mutable-store](https://spiderspace.github.io/svelte-mutable-store)
+and there's also
+[this REPL demonstration](https://svelte.dev/repl/0d7852935b2247a89cb04255f374a309?version=3.46.1).
 
-SvelteKit or bundler config: `immutable: true`
+- usecases:
+  - large maps and arrays of stores (client-side indexes of reactive backend state)
+- implementations
+  - `mutable`, that wraps every store change in a new object reference as a `value` property
+  - `fastMutable` that tries to be efficient (maybe too clever)
+- questions
+  - is `fastMutable` a footgun?
+  - names?
+  - `set` method? (maybe for `bind:` patterns?) guidance against using it?
+- want to help?
+  - spiderspace discussions post (TODO make this post and link it)
+  - please share your thoughts on Twitter or YouTube! (TODO make a video and tweet?)
+  - if you'd prefer to discuss privately, email me at mail@ryanatkn.com
+- see also
+  - [Twitter poll](https://twitter.com/ryanatkn/status/1482390036943360010)
+    asking users if they use `immutable`
 
-Svelte component override: `<svelte:options immutable={true}>`
+## more info
+
+It's both a niche and advanced topic,
+particularly because Svelte defaults to `immutable: false`.
+Many developers don't know or care about it,
+and the usecase motivating these stores is niche.
+(large data collections that cause performance problems when cloned)
+
+### how to enable `immutable`?
+
+Two ways:
+
+1. [SvelteKit config](https://kit.svelte.dev/docs#configuration): `immutable: true`.
+   See this project's [`svelte.config.js`](/svelte.config.js) for an example.
+2. Svelte component override:
+   [`<svelte:options immutable={true}>`](<(https://svelte.dev/docs#template-syntax-svelte-options)>)
+
+### how does `immutable` work?
 
 The option tells the Svelte compiler to
 [swap this function](https://github.com/sveltejs/svelte/blob/a4e4027f794dad93bcd6ffd74c1a19a9ce9ef6ac/src/compiler/compile/render_dom/index.ts#L122):
@@ -68,31 +121,6 @@ export function not_equal(a, b) {
 	return a != a ? b == b : a !== b;
 }
 ```
-
-## solution?
-
-https://svelte.dev/repl/0d7852935b2247a89cb04255f374a309?version=3.46.1
-
-Why make a video? This is complex and I need help and opinions.
-I don't have a blogging setup but maybe this would be a good first post.
-It's both a niche and advanced topic,
-particularly because Svelte defaults to `immutable: false`.
-
-- usecases:
-  - large maps and arrays of stores (client-side indexes of reactive backend state)
-- implementations
-  - `mutable` that tries to be efficient (maybe too clever)
-  - `pure` that is slightly less efficient than `mutable`
-- questions
-  - is `mutable` a footgun?
-  - names?
-  - `set` method? (maybe for `bind:` patterns?)
-- want to help?
-  - please share your thoughts on Twitter or YouTube!
-  - if you'd prefer to discuss privately, email me at mail@ryanatkn.com
-- see also
-  - Twitter poll
-  - lihautan's immer video
 
 ## usage
 
