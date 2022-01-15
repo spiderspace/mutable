@@ -1,5 +1,5 @@
 {
-  "name": "svelte-mutable-store",
+  "name": "svelte-mutable",
   "description": "using mutable values in Svelte stores with the immutable compiler flag",
   "version": "0.0.1",
   "license": "Unlicense",
