@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>svelte-mutable-store</title><link rel="icon" href="/favicon.png" data-svelte="svelte-13rhh0r">
+
+		
+
+		<link rel="modulepreload" href="/svelte-mutable-store/_app/start-e302ca23.js">
+		<link rel="modulepreload" href="/svelte-mutable-store/_app/chunks/vendor-7ffe92ef.js">
+		<link rel="modulepreload" href="/svelte-mutable-store/_app/pages/__layout.svelte-c90560d5.js">
+		<link rel="modulepreload" href="/svelte-mutable-store/_app/pages/index.svelte-147dfcb2.js">
+		<link rel="stylesheet" href="/svelte-mutable-store/_app/assets/start-61d1577b.css">
+		<link rel="stylesheet" href="/svelte-mutable-store/_app/assets/pages/__layout.svelte-9b0f5d2e.css">
+		<link rel="stylesheet" href="/svelte-mutable-store/_app/assets/pages/index.svelte-b3e2cae1.css">
+
+		<script type="module">
+			import { start } from "/svelte-mutable-store/_app/start-e302ca23.js";
+			start({
+				target: document.body,
+				paths: {"base":"/svelte-mutable-store","assets":""},
+				session: {},
+				host: location.host,
+				route: true,
+				spa: false,
+				trailing_slash: "never",
+				hydrate: {
+					status: 200,
+					error: null,
+					nodes: [
+						import("/svelte-mutable-store/_app/pages/__layout.svelte-c90560d5.js"),
+						import("/svelte-mutable-store/_app/pages/index.svelte-147dfcb2.js")
+					],
+					page: {
+						host: location.host, // TODO this is redundant
+						path: "\u002F",
+						query: new URLSearchParams(""),
+						params: {}
+					}
+				}
+			});
+		</script>
+	</head>
+	<body>
+		
+
+
+
+
+<main class="markup svelte-1hmclby"><header><h1 class="svelte-1hmclby">svelte-mutable-store</h1>
+		<blockquote>how to efficiently wrap mutable values with the <code class="svelte-1hmclby">immutable={true}</code> compiler flag
+		</blockquote></header>
+
+	<button class="svelte-1hmclby">click me to make number++ go up
+	</button>
+
+	<h2 class="svelte-1hmclby">A. <code class="svelte-1hmclby">writable</code> store (broken! D:)
+	</h2>
+	<section style="--hue: 37;"><div><span class="count svelte-1hmclby">1</span>
+			← fails to update as a <code class="svelte-1hmclby">writable</code> store because <code class="svelte-1hmclby">immutable={true}</code></div>
+		<pre class="panel-inset svelte-1hmclby">$writableMap.set(&#39;a&#39;, $writableMap.get(&#39;a&#39;) + 1);
+$writableMap = $writableMap;
+		</pre></section>
+
+	<h2 class="svelte-1hmclby">B. cloned <code class="svelte-1hmclby">writable</code> store
+	</h2>
+	<section style="--hue: 37;"><div><span class="count svelte-1hmclby">1</span>
+			← works, but causes heart pain and in some cases tremendous garbage and slowness
+		</div>
+		<pre class="panel-inset svelte-1hmclby">$writableMapCloned.set(&#39;a&#39;, $writableMapCloned.get(&#39;a&#39;) + 1);
+$writableMapCloned = new Map($writableMapCloned);
+		</pre></section>
+
+	<blockquote>in the examples below, notice that you need to access <code class="svelte-1hmclby">.value</code> for reads, unlike above
+	</blockquote>
+
+	<h2 class="svelte-1hmclby">C. <code class="svelte-1hmclby">derived</code> from <code class="svelte-1hmclby">writable</code> store
+	</h2>
+	<section style="--hue: 37;"><div><span class="count svelte-1hmclby">1</span>
+			← works with no new libraries, and doesn&#39;t clone the map, but we&#39;re juggling two stores, one for
+			writes and one for reads, and it creates garbage every change
+		</div>
+		<pre class="panel-inset svelte-1hmclby">const derivedWritableMap = derived(writableMap, ($v) =&gt; ({value: $v}));
+		</pre></section>
+
+	<h2 class="svelte-1hmclby">D. <code class="svelte-1hmclby">mutable</code> store
+	</h2>
+	<section style="--hue: 37;"><div><span class="count svelte-1hmclby">1</span>
+			← works because it&#39;s a <code class="svelte-1hmclby">mutable</code> store; doesn&#39;t clone the map; however notice that
+			you need to access <code class="svelte-1hmclby">.value</code></div>
+		<pre class="panel-inset svelte-1hmclby">mutableMap.update(($v) =&gt; {
+	$v.set(&#39;a&#39;, $v.get(&#39;a&#39;) + 1);
+});
+		</pre></section>
+
+	<h2 class="svelte-1hmclby">E. <code class="svelte-1hmclby">mutable</code> store antipattern
+	</h2>
+	<section style="--hue: 37;"><div><span class="count svelte-1hmclby">1</span>
+			← works because it&#39;s a <code class="svelte-1hmclby">mutable</code> store, but mutates the value directly and then
+			manually calls <code class="svelte-1hmclby">.update()</code>, which seems like an antipattern
+		</div>
+		<pre class="panel-inset svelte-1hmclby">$mutableMapAntipattern.value.set(&#39;a&#39;, $mutableMapAntipattern.value.get(&#39;a&#39;) + 1);
+mutableMapAntipattern.update();
+		</pre></section>
+
+	<h2 class="svelte-1hmclby">F. <code class="svelte-1hmclby">fastMutable</code> store
+	</h2>
+	<section style="--hue: 37;"><div><span class="count svelte-1hmclby">1</span>
+			← works because it&#39;s a <code class="svelte-1hmclby">fastMutable</code> store, which compared to
+			<code class="svelte-1hmclby">mutable</code> is slightly more efficient because it swaps between two stable object references,
+			but it doesn&#39;t compose as an immutable value stream
+		</div>
+		<pre class="panel-inset svelte-1hmclby">fastMutableMap.update(($v) =&gt; {
+	$v.set(&#39;a&#39;, $v.get(&#39;a&#39;) + 1);
+});
+		</pre></section>
+
+	<hr>
+
+	<h2 class="svelte-1hmclby">notes:</h2>
+	<ul><li>Why care about the immutable option? See this example: <a href="https://svelte.dev/examples/immutable-data">https://svelte.dev/examples/immutable-data</a></li>
+		<li>The usecases motivating these stores: large maps and other collections (often containing
+			stores) for complex client-side indexing.
+		</li>
+		<li>Can we solve this problem with a better pattern than these custom stores? Am I missing
+			something?
+		</li>
+		<li>Is <code class="svelte-1hmclby">fastMutable</code>&#39;s strategy of swapping between two stable references a dangerous
+			footgun? It doesn&#39;t compose with code that expects every change to be referentially unique.
+			Should the <code class="svelte-1hmclby">mutable</code> implementation be preferred in all cases?
+		</li>
+		<li>Are there bettes names than <code class="svelte-1hmclby">mutable</code> and <code class="svelte-1hmclby">fastMutable</code>?
+		</li>
+		<li>Add a <code class="svelte-1hmclby">set</code> store method? Probably useful for <code class="svelte-1hmclby">bind:</code> usage in some cases
+			and less code than `update` to replace references.
+		</li></ul>
+	<hr>
+	<footer class="svelte-1hmclby"><a href="https://github.com/spiderspace/svelte-mutable-store">public domain source code on GitHub
+		</a></footer>
+</main>
+
+
+	</body>
+</html>
