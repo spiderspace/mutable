@@ -94,10 +94,11 @@ and the usecase motivating these stores is niche.
 
 Two ways:
 
-1. [SvelteKit config](https://kit.svelte.dev/docs#configuration): `immutable: true`.
+1. globally: set `immutable: true` in the
+   [SvelteKit config](https://kit.svelte.dev/docs#configuration).
    See this project's [`svelte.config.js`](/svelte.config.js) for an example.
-2. Svelte component override:
-   [`<svelte:options immutable={true}>`](<(https://svelte.dev/docs#template-syntax-svelte-options)>)
+2. locally per component:
+   [`<svelte:options immutable={true}>`](https://svelte.dev/docs#template-syntax-svelte-options)
 
 ### how does `immutable` work?
 
