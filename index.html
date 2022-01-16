@@ -7,17 +7,17 @@
 
 		
 
-		<link rel="modulepreload" href="/mutable/_app/start-694a786f.js">
+		<link rel="modulepreload" href="/mutable/_app/start-6779aded.js">
 		<link rel="modulepreload" href="/mutable/_app/chunks/vendor-7ffe92ef.js">
 		<link rel="modulepreload" href="/mutable/_app/chunks/paths-28a87002.js">
 		<link rel="modulepreload" href="/mutable/_app/pages/__layout.svelte-7369779d.js">
-		<link rel="modulepreload" href="/mutable/_app/pages/index.svelte-daf944c3.js">
+		<link rel="modulepreload" href="/mutable/_app/pages/index.svelte-f599c53c.js">
 		<link rel="stylesheet" href="/mutable/_app/assets/start-61d1577b.css">
 		<link rel="stylesheet" href="/mutable/_app/assets/pages/__layout.svelte-0ad0de83.css">
 		<link rel="stylesheet" href="/mutable/_app/assets/pages/index.svelte-d1a90a38.css">
 
 		<script type="module">
-			import { start } from "/mutable/_app/start-694a786f.js";
+			import { start } from "/mutable/_app/start-6779aded.js";
 			start({
 				target: document.body,
 				paths: {"base":"/mutable","assets":""},
@@ -31,7 +31,7 @@
 					error: null,
 					nodes: [
 						import("/mutable/_app/pages/__layout.svelte-7369779d.js"),
-						import("/mutable/_app/pages/index.svelte-daf944c3.js")
+						import("/mutable/_app/pages/index.svelte-f599c53c.js")
 					],
 					page: {
 						host: location.host, // TODO this is redundant
@@ -72,7 +72,9 @@ $writableMap <span class="token operator">=</span> $writableMap<span class="toke
 	<section style="--hue: 37;"><pre class="panel-inset svelte-z1t7fb"><!-- HTML_TAG_START --><span class="token keyword">const</span> writableMapCloned <span class="token operator">=</span> <span class="token function">writable</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Map</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><!-- HTML_TAG_END --></pre>
 		<div class="count-with-label svelte-z1t7fb"><p class="count-wrapper panel-outset svelte-z1t7fb"><span class="count svelte-z1t7fb">1</span>
 				<span class="read-example svelte-z1t7fb"><!-- HTML_TAG_START -->$writableMapCloned<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">'a'</span><span class="token punctuation">)</span><!-- HTML_TAG_END --></span></p>
-			<p class="count-label svelte-z1t7fb">works, but in some cases, causes tremendous garbage and slowness</p></div>
+			<p class="count-label svelte-z1t7fb">works for <code class="svelte-z1t7fb">Map</code>, but in some cases, causes tremendous garbage and slowness; also,
+				it does not work for <code class="svelte-z1t7fb">WeakMap</code>, one of the motivating usecases for this document
+			</p></div>
 		<pre class="panel-inset svelte-z1t7fb"><!-- HTML_TAG_START -->$writableMapCloned<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token string">'a'</span><span class="token punctuation">,</span> $writableMapCloned<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">'a'</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 $writableMapCloned <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Map</span><span class="token punctuation">(</span>$writableMapCloned<span class="token punctuation">)</span><span class="token punctuation">;</span><!-- HTML_TAG_END --></pre></section>
 
