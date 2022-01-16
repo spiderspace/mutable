@@ -144,7 +144,7 @@ Two ways:
    [SvelteKit config](https://kit.svelte.dev/docs#configuration).
    See this project's [`svelte.config.js`](/svelte.config.js) for an example.
 2. locally per component:
-   [`<svelte:options immutable={true}>`](https://svelte.dev/docs#template-syntax-svelte-options)
+   [`<svelte:options immutable={true} />`](https://svelte.dev/docs#template-syntax-svelte-options)
 
 ### how does `immutable` work?
 
@@ -213,7 +213,7 @@ gro deploy
 ## credits 🐢<sub>🐢</sub><sub><sub>🐢</sub></sub>
 
 This project uses [`prismjs`](https://github.com/PrismJS/prism/)
-to generate static HTML at build time for syntax highlighting,
+to generate static HTML at buildtime for syntax highlighting,
 so no runtime scripts are needed.
 It'd be neat to do this without
 [the roundabout codegen strategy](/src/lib/examples.gen.json.ts) assisted by
