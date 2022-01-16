@@ -128,6 +128,7 @@ Your input is appreciated!
 Svelte defaults to `immutable: false`, so
 [most Svelte developers don't use it](https://twitter.com/ryanatkn/status/1482390036943360010),
 and the usecases outlined above are niche.
+The [official example](https://svelte.dev/examples/immutable-data) demonstrates why you might care.
 Here's how [the docs](https://svelte.dev/docs#compile-time-svelte-compile)
 describe the feature:
 
