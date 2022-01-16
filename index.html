@@ -3,24 +3,24 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<title>svelte-mutable</title><link rel="icon" href="/svelte-mutable/favicon.png" data-svelte="svelte-aprg12">
+		<title>mutable</title><link rel="icon" href="/mutable/favicon.png" data-svelte="svelte-1b25trw">
 
 		
 
-		<link rel="modulepreload" href="/svelte-mutable/_app/start-a24598e7.js">
-		<link rel="modulepreload" href="/svelte-mutable/_app/chunks/vendor-7ffe92ef.js">
-		<link rel="modulepreload" href="/svelte-mutable/_app/chunks/paths-28a87002.js">
-		<link rel="modulepreload" href="/svelte-mutable/_app/pages/__layout.svelte-df5fd759.js">
-		<link rel="modulepreload" href="/svelte-mutable/_app/pages/index.svelte-96206ea9.js">
-		<link rel="stylesheet" href="/svelte-mutable/_app/assets/start-61d1577b.css">
-		<link rel="stylesheet" href="/svelte-mutable/_app/assets/pages/__layout.svelte-9b0f5d2e.css">
-		<link rel="stylesheet" href="/svelte-mutable/_app/assets/pages/index.svelte-f11e02f5.css">
+		<link rel="modulepreload" href="/mutable/_app/start-d0391278.js">
+		<link rel="modulepreload" href="/mutable/_app/chunks/vendor-7ffe92ef.js">
+		<link rel="modulepreload" href="/mutable/_app/chunks/paths-28a87002.js">
+		<link rel="modulepreload" href="/mutable/_app/pages/__layout.svelte-6d6a125f.js">
+		<link rel="modulepreload" href="/mutable/_app/pages/index.svelte-9e7f8d4f.js">
+		<link rel="stylesheet" href="/mutable/_app/assets/start-61d1577b.css">
+		<link rel="stylesheet" href="/mutable/_app/assets/pages/__layout.svelte-9b0f5d2e.css">
+		<link rel="stylesheet" href="/mutable/_app/assets/pages/index.svelte-9c8b29a7.css">
 
 		<script type="module">
-			import { start } from "/svelte-mutable/_app/start-a24598e7.js";
+			import { start } from "/mutable/_app/start-d0391278.js";
 			start({
 				target: document.body,
-				paths: {"base":"/svelte-mutable","assets":""},
+				paths: {"base":"/mutable","assets":""},
 				session: {},
 				host: location.host,
 				route: true,
@@ -30,8 +30,8 @@
 					status: 200,
 					error: null,
 					nodes: [
-						import("/svelte-mutable/_app/pages/__layout.svelte-df5fd759.js"),
-						import("/svelte-mutable/_app/pages/index.svelte-96206ea9.js")
+						import("/mutable/_app/pages/__layout.svelte-6d6a125f.js"),
+						import("/mutable/_app/pages/index.svelte-9e7f8d4f.js")
 					],
 					page: {
 						host: location.host, // TODO this is redundant
@@ -49,107 +49,85 @@
 
 
 
-<main class="markup column svelte-og1xdl"><header><h1 class="svelte-og1xdl"><a href="https://github.com/spiderspace/svelte-mutable">svelte-mutable</a></h1>
-		<blockquote>using mutable values in Svelte stores with the <code class="svelte-og1xdl">immutable</code> compiler flag.
-			<a href="https://github.com/spiderspace/svelte-mutable">learn more on GitHub</a></blockquote></header>
+<main class="markup column svelte-5qhvja"><header><h1 class="svelte-5qhvja"><a href="https://github.com/spiderspace/mutable">mutable</a></h1>
+		<blockquote>using mutable values in Svelte stores with the <code class="svelte-5qhvja">immutable</code> compiler flag.
+			<a href="https://github.com/spiderspace/mutable">learn more on GitHub</a></blockquote></header>
 
-	<button class="svelte-og1xdl">click me to make number++ go up
+	<button class="svelte-5qhvja">click me to make number++ go up
 	</button>
 
-	<h2 class="svelte-og1xdl">A. <code class="svelte-og1xdl">writable</code> store (broken! D:)
+	<h2 class="svelte-5qhvja">A. <code class="svelte-5qhvja">writable</code> store (broken! D:)
 	</h2>
-	<section style="--hue: 37;"><p><span class="count svelte-og1xdl">1</span>
-			← fails to update as a <code class="svelte-og1xdl">writable</code> store because <code class="svelte-og1xdl">immutable={true}</code></p>
-		<pre class="panel-inset svelte-og1xdl">$writableMap.set(&#39;a&#39;, $writableMap.get(&#39;a&#39;) + 1);
+	<section style="--hue: 37;"><p><span class="count svelte-5qhvja">1</span>
+			← fails to update as a <code class="svelte-5qhvja">writable</code> store because <code class="svelte-5qhvja">immutable={true}</code></p>
+		<pre class="panel-inset svelte-5qhvja">$writableMap.set(&#39;a&#39;, $writableMap.get(&#39;a&#39;) + 1);
 $writableMap = $writableMap;
 		</pre></section>
 
-	<h2 class="svelte-og1xdl">B. cloned <code class="svelte-og1xdl">writable</code> store
+	<h2 class="svelte-5qhvja">B. cloned <code class="svelte-5qhvja">writable</code> store
 	</h2>
-	<section style="--hue: 37;"><p><span class="count svelte-og1xdl">1</span>
+	<section style="--hue: 37;"><p><span class="count svelte-5qhvja">1</span>
 			← works, but causes heart pain and in some cases tremendous garbage and slowness
 		</p>
-		<pre class="panel-inset svelte-og1xdl">$writableMapCloned.set(&#39;a&#39;, $writableMapCloned.get(&#39;a&#39;) + 1);
+		<pre class="panel-inset svelte-5qhvja">$writableMapCloned.set(&#39;a&#39;, $writableMapCloned.get(&#39;a&#39;) + 1);
 $writableMapCloned = new Map($writableMapCloned);
 		</pre></section>
 
-	<blockquote>in the examples below, notice that you need to access <code class="svelte-og1xdl">.value</code> for reads, unlike above
+	<blockquote>in the examples below, notice that you need to access <code class="svelte-5qhvja">.value</code> for reads, unlike above
 	</blockquote>
 
-	<h2 class="svelte-og1xdl">C. <code class="svelte-og1xdl">derived</code> from <code class="svelte-og1xdl">writable</code> store
+	<h2 class="svelte-5qhvja">C. <code class="svelte-5qhvja">derived</code> from <code class="svelte-5qhvja">writable</code> store
 	</h2>
-	<section style="--hue: 37;"><p><span class="count svelte-og1xdl">1</span>
+	<section style="--hue: 37;"><p><span class="count svelte-5qhvja">1</span>
 			← works with no new libraries, and doesn&#39;t clone the map, but we&#39;re juggling two stores, one for
 			writes and one for reads, and it creates garbage every change
 		</p>
-		<pre class="panel-inset svelte-og1xdl">const derivedWritableMap = derived(writableMap, ($v) =&gt; ({value: $v}));
+		<pre class="panel-inset svelte-5qhvja">const derivedWritableMap = derived(writableMap, ($v) =&gt; ({value: $v}));
 		</pre></section>
 
-	<h2 class="svelte-og1xdl">D. <code class="svelte-og1xdl">mutable</code> store
+	<h2 class="svelte-5qhvja">D. <code class="svelte-5qhvja">mutable</code> store
 	</h2>
-	<section style="--hue: 37;"><p><span class="count svelte-og1xdl">1</span>
-			← works because it&#39;s a <code class="svelte-og1xdl">mutable</code> store; doesn&#39;t clone the map; however notice that
-			you need to access <code class="svelte-og1xdl">.value</code></p>
-		<pre class="panel-inset svelte-og1xdl">mutableMap.update(($v) =&gt; {
+	<section style="--hue: 37;"><p><span class="count svelte-5qhvja">1</span>
+			← works because it&#39;s a <code class="svelte-5qhvja">mutable</code> store; doesn&#39;t clone the map; however notice that
+			you need to access <code class="svelte-5qhvja">.value</code></p>
+		<pre class="panel-inset svelte-5qhvja">mutableMap.update(($v) =&gt; {
 	$v.set(&#39;a&#39;, $v.get(&#39;a&#39;) + 1);
 });
 		</pre></section>
 
-	<h2 class="svelte-og1xdl">E. <code class="svelte-og1xdl">mutable</code> store with manual update or set
+	<h2 class="svelte-5qhvja">E. <code class="svelte-5qhvja">mutable</code> store with manual update or set
 	</h2>
-	<section style="--hue: 37;"><p><span class="count svelte-og1xdl">1</span>
-			← works because it&#39;s a <code class="svelte-og1xdl">mutable</code> store, but mutates the value directly and then
-			manually calls <code class="svelte-og1xdl">.update()</code>, which seems like an antipattern
+	<section style="--hue: 37;"><p><span class="count svelte-5qhvja">1</span>
+			← works because it&#39;s a <code class="svelte-5qhvja">mutable</code> store, but mutates the value directly and then
+			manually calls <code class="svelte-5qhvja">.update()</code>, which seems like an antipattern
 		</p>
-		<pre class="panel-inset svelte-og1xdl">$mutableMapManual.value.set(&#39;a&#39;, $mutableMapManual.value.get(&#39;a&#39;) + 1);
+		<pre class="panel-inset svelte-5qhvja">$mutableMapManual.value.set(&#39;a&#39;, $mutableMapManual.value.get(&#39;a&#39;) + 1);
 mutableMapManual.update();
 		</pre>
-		<p>an alternative using the store&#39;s <code class="svelte-og1xdl">set</code> method:</p>
-		<pre class="panel-inset svelte-og1xdl">$mutableMapManual.value.set(&#39;a&#39;, $mutableMapManual.value.get(&#39;a&#39;) + 1);
+		<p>an alternative using the store&#39;s <code class="svelte-5qhvja">set</code> method:</p>
+		<pre class="panel-inset svelte-5qhvja">$mutableMapManual.value.set(&#39;a&#39;, $mutableMapManual.value.get(&#39;a&#39;) + 1);
 $mutableMapManual = $mutableMapManual.value;
 		</pre>
-		<p>and you can set a new value if you need to, but if this is all you need, prefer a <code class="svelte-og1xdl">writable</code>:
+		<p>and you can set a new value if you need to, but if this is all you need, prefer a <code class="svelte-5qhvja">writable</code>:
 		</p>
-		<pre class="panel-inset svelte-og1xdl">$mutableMapManual = new Map([/*...*/]);
+		<pre class="panel-inset svelte-5qhvja">$mutableMapManual = new Map([/*...*/]);
 mutableMapManual.update(() =&gt; new Map([/*...*/]));
 		</pre></section>
 
-	<h2 class="svelte-og1xdl">F. <code class="svelte-og1xdl">fastMutable</code> store
+	<h2 class="svelte-5qhvja">F. <code class="svelte-5qhvja">fastMutable</code> store
 	</h2>
-	<section style="--hue: 37;"><p><span class="count svelte-og1xdl">1</span>
-			← works because it&#39;s a <code class="svelte-og1xdl">fastMutable</code> store, which compared to
-			<code class="svelte-og1xdl">mutable</code> is slightly more efficient because it swaps between two stable object references,
+	<section style="--hue: 37;"><p><span class="count svelte-5qhvja">1</span>
+			← works because it&#39;s a <code class="svelte-5qhvja">fastMutable</code> store, which compared to
+			<code class="svelte-5qhvja">mutable</code> is slightly more efficient because it swaps between two stable object references,
 			but it doesn&#39;t compose as an immutable value stream
 		</p>
-		<pre class="panel-inset svelte-og1xdl">fastMutableMap.update(($v) =&gt; {
+		<pre class="panel-inset svelte-5qhvja">fastMutableMap.update(($v) =&gt; {
 	$v.set(&#39;a&#39;, $v.get(&#39;a&#39;) + 1);
 });
 		</pre></section>
 
 	<hr>
-
-	<h2 class="svelte-og1xdl">notes:</h2>
-	<ul><li>Why care about the immutable option? Mainly performance. See <a href="https://svelte.dev/examples/immutable-data">the official example</a>.
-		</li>
-		<li>The usecases motivating these stores: large maps and other collections (often containing
-			stores) for complex client-side indexing.
-		</li>
-		<li>Can we solve this problem with a better pattern than these custom stores? Am I missing
-			something? Maybe lightweight immutable maps/arrays/sets with structural sharing and an API
-			that jive with their JS counterparts? (<a href="https://github.com/immutable-js/immutable-js">Immutable.js</a> v4 is 65k minified and has patterns that diverge from the builtin collections; which in some
-			cases might be worth paying for)
-		</li>
-		<li>Is <code class="svelte-og1xdl">fastMutable</code>&#39;s strategy of swapping between two stable references a dangerous
-			footgun? It doesn&#39;t compose with code that expects every change to be referentially unique.
-			Should the <code class="svelte-og1xdl">mutable</code> implementation be preferred in all cases?
-		</li>
-		<li>Are there better names than <code class="svelte-og1xdl">mutable</code> and <code class="svelte-og1xdl">fastMutable</code>?
-		</li>
-		<li>Add a <code class="svelte-og1xdl">set</code> store method? Probably useful for <code class="svelte-og1xdl">bind:</code> usage in some cases
-			and less code than `update` to replace references.
-		</li></ul>
-	<hr>
-	<footer class="svelte-og1xdl"><a href="https://github.com/spiderspace/svelte-mutable">public domain source code on GitHub </a></footer>
+	<footer class="svelte-5qhvja"><p><a href="https://github.com/spiderspace/mutable">get the docs and public domain source code on GitHub</a></p></footer>
 </main>
 
 
