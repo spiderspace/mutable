@@ -2,6 +2,7 @@
 	import {writable, derived} from 'svelte/store'; // using `writable`+cloning is inefficient and `derived` is unwieldy
 	import {mutable} from '$lib/mutable'; // slightly less efficient than `fastMutable` but composes with pure code
 	import {fastMutable} from '$lib/fastMutable'; // this one is more efficient but doesn't compose with pure code
+	import examples from '$lib/examples.json';
 
 	const data: [any, any][] = [['a', 1]]; // pretend there's lots of data here; cloning usually performs fine with small data
 
@@ -75,8 +76,7 @@
 			← fails to update as a <code>writable</code> store because <code>immutable={'{'}true}</code>
 		</p>
 		<pre class="panel-inset">
-$writableMap.set('a', $writableMap.get('a') + 1);
-$writableMap = $writableMap;
+{@html examples.A}
 		</pre>
 	</section>
 
@@ -86,11 +86,10 @@ $writableMap = $writableMap;
 	<section style:--hue={toHue($writableMapCloned.get('a'))}>
 		<p>
 			<span class="count">{$writableMapCloned.get('a')}</span>
-			← works, but causes heart pain and in some cases tremendous garbage and slowness
+			← works, but in some cases, causes tremendous garbage and slowness
 		</p>
 		<pre class="panel-inset">
-$writableMapCloned.set('a', $writableMapCloned.get('a') + 1);
-$writableMapCloned = new Map($writableMapCloned);
+{@html examples.B}
 		</pre>
 	</section>
 
@@ -104,11 +103,11 @@ $writableMapCloned = new Map($writableMapCloned);
 	<section style:--hue={toHue($derivedWritableMap.value.get('a'))}>
 		<p>
 			<span class="count">{$derivedWritableMap.value.get('a')}</span>
-			← works with no new libraries, and doesn't clone the map, but we're juggling two stores, one for
-			writes and one for reads, and it creates garbage every change
+			← works with no new libraries, and doesn't clone the map, but now we're juggling two stores, one
+			for writes and one for reads, and it creates garbage every change
 		</p>
 		<pre class="panel-inset">
-const derivedWritableMap = derived(writableMap, ($v) => ({'{'}value: $v}));
+{@html examples.C}
 		</pre>
 	</section>
 
@@ -122,9 +121,7 @@ const derivedWritableMap = derived(writableMap, ($v) => ({'{'}value: $v}));
 			you need to access <code>.value</code>
 		</p>
 		<pre class="panel-inset">
-mutableMap.update(($v) => {'{'}
-	$v.set('a', $v.get('a') + 1);
-});
+{@html examples.D}
 		</pre>
 	</section>
 
@@ -139,9 +136,7 @@ mutableMap.update(($v) => {'{'}
 			but it doesn't compose as an immutable value stream
 		</p>
 		<pre class="panel-inset">
-fastMutableMap.update(($v) => {'{'}
-	$v.set('a', $v.get('a') + 1);
-});
+{@html examples.E}
 		</pre>
 	</section>
 
@@ -155,13 +150,11 @@ fastMutableMap.update(($v) => {'{'}
 			manually calls <code>.update()</code>, which seems like an antipattern
 		</p>
 		<pre class="panel-inset">
-$mutableMapManual.value.set('a', $mutableMapManual.value.get('a') + 1);
-mutableMapManual.update();
+{@html examples.F1}
 		</pre>
 		<p>an alternative using the store's <code>set</code> method:</p>
 		<pre class="panel-inset">
-$mutableMapManual.value.set('a', $mutableMapManual.value.get('a') + 1);
-$mutableMapManual = $mutableMapManual.value;
+{@html examples.F2}
 		</pre>
 		<p>
 			and you can set a new value if you need to, but if this is all you need, prefer a <code
@@ -169,11 +162,11 @@ $mutableMapManual = $mutableMapManual.value;
 			>:
 		</p>
 		<pre class="panel-inset">
-$mutableMapManual = new Map([/*...*/]);
+{@html examples.F3}
 		</pre>
 		<p>or:</p>
 		<pre class="panel-inset">
-mutableMapManual.update(() => new Map([/*...*/]));
+{@html examples.F4}
 		</pre>
 	</section>
 
@@ -205,7 +198,7 @@ mutableMapManual.update(() => new Map([/*...*/]));
 	}
 	code {
 		background: hsl(17, 20%, 92%);
-		padding: 0.1em 0.5em;
+		padding: 0 0.5em;
 		white-space: nowrap;
 	}
 	button {
@@ -216,7 +209,8 @@ mutableMapManual.update(() => new Map([/*...*/]));
 	}
 	.count {
 		background-color: hsl(var(--hue), 70%, 90%);
-		padding: 0.2em 1em;
+		padding: 0 1em;
+		font-size: var(--font_size_xl);
 	}
 	h2 {
 		margin-top: 1.5em;
