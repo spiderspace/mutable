@@ -73,7 +73,7 @@ We could try to enable `immutable` globally and opt out on a per-component basis
 but this is error prone and adds a lot of mental overhead,
 and it loses the efficiency of the `immutable` option for the rest of the component.
 If you enable `immutable` globally and forget to disable it
-in a component where you use a `WeakMap` in a store, for example,
+in a component where you use a `WeakMap` in a `writable`, for example,
 your component will silently not react to changes;
 silent bugs can be quite painful.
 
