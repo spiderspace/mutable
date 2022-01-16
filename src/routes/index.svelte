@@ -121,9 +121,12 @@
 			<span class="read-example panel-inset">{@html examples.CRead}</span>
 		</p>
 		<p>
-			↑ works with no new libraries, and doesn't clone the map, but now we're juggling two stores,
-			one for writes and one for reads, and it creates garbage every change
+			↑ works with no new modules, and doesn't clone the map, but now we're juggling two stores, one
+			for writes and one for reads, and it creates garbage every change
 		</p>
+		<pre class="panel-inset">
+			{@html examples.CWrite}
+		</pre>
 	</section>
 
 	<h2>

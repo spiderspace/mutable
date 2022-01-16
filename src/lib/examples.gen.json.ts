@@ -12,6 +12,8 @@ $writableMap = $writableMap;`,
 $writableMapCloned = new Map($writableMapCloned);`,
 	CDef: `const derivedWritableMap = derived(writableMap, ($v) => ({value: $v}));`,
 	CRead: `$derivedWritableMap.value.get('a')`,
+	CWrite: `$writableMap.set('a', $writableMap.get('a') + 1);
+$writableMap = $writableMap;`,
 	DDef: `const mutableMap = mutable(new Map(data));`,
 	DRead: `$mutableMap.value.get('a')`,
 	DWrite: `mutableMap.update(($v) => {
