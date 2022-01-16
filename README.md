@@ -25,10 +25,6 @@ and/or
 
 ## problem?
 
-> deployed to
-> [spiderspace.github.io/mutable](https://spiderspace.github.io/mutable),
-> and see also [this REPL](https://svelte.dev/repl/0d7852935b2247a89cb04255f374a309?version=3.46.1)
-
 The [`immutable` compiler option](https://svelte.dev/docs#compile-time-svelte-compile),
 which is `false` by default in Svelte and SvelteKit,
 can sometimes improve performance as demonstrated in
