@@ -20,7 +20,7 @@
 	<header>
 		<h1><a href="https://github.com/spiderspace/mutable">mutable</a></h1>
 		<blockquote>
-			using mutable values in Svelte stores with the <code>immutable</code> compiler flag.
+			using mutable values in Svelte stores with the <code>immutable</code> compiler flag —
 			<a href="https://github.com/spiderspace/mutable">learn more on GitHub</a>
 		</blockquote>
 	</header>
@@ -71,6 +71,9 @@
 		A. <code>writable</code> store (broken! D:)
 	</h2>
 	<section style:--hue={toHue($writableMap.get('a'))}>
+		<pre class="panel-inset">
+			{@html examples.ADef}
+		</pre>
 		<p class="count-wrapper">
 			<span class="count">{$writableMap.get('a')}</span>
 			<span class="read-example panel-inset">{@html examples.ARead}</span>
@@ -79,7 +82,7 @@
 			↑ fails to update as a <code>writable</code> store because <code>immutable={'{'}true}</code>
 		</p>
 		<pre class="panel-inset">
-{@html examples.AWrite}
+			{@html examples.AWrite}
 		</pre>
 	</section>
 
@@ -87,13 +90,16 @@
 		B. cloned <code>writable</code> store
 	</h2>
 	<section style:--hue={toHue($writableMapCloned.get('a'))}>
+		<pre class="panel-inset">
+			{@html examples.BDef}
+		</pre>
 		<p class="count-wrapper">
 			<span class="count">{$writableMapCloned.get('a')}</span>
 			<span class="read-example panel-inset">{@html examples.BRead}</span>
 		</p>
 		<p>↑ works, but in some cases, causes tremendous garbage and slowness</p>
 		<pre class="panel-inset">
-{@html examples.BWrite}
+			{@html examples.BWrite}
 		</pre>
 	</section>
 
@@ -107,6 +113,9 @@
 		C. <code>derived</code> from <code>writable</code> store
 	</h2>
 	<section style:--hue={toHue($derivedWritableMap.value.get('a'))}>
+		<pre class="panel-inset">
+			{@html examples.CDef}
+		</pre>
 		<p class="count-wrapper">
 			<span class="count">{$derivedWritableMap.value.get('a')}</span>
 			<span class="read-example panel-inset">{@html examples.CRead}</span>
@@ -115,15 +124,15 @@
 			↑ works with no new libraries, and doesn't clone the map, but now we're juggling two stores,
 			one for writes and one for reads, and it creates garbage every change
 		</p>
-		<pre class="panel-inset">
-{@html examples.CWrite}
-		</pre>
 	</section>
 
 	<h2>
 		D. <code>mutable</code> store
 	</h2>
 	<section style:--hue={toHue($mutableMap.value.get('a'))}>
+		<pre class="panel-inset">
+			{@html examples.DDef}
+		</pre>
 		<p class="count-wrapper">
 			<span class="count">{$mutableMap.value.get('a')}</span>
 			<span class="read-example panel-inset">{@html examples.DRead}</span>
@@ -133,7 +142,7 @@
 			you need to access <code>.value</code> on reads
 		</p>
 		<pre class="panel-inset">
-{@html examples.DWrite}
+			{@html examples.DWrite}
 		</pre>
 	</section>
 
@@ -141,6 +150,9 @@
 		E. <code>fastMutable</code> store
 	</h2>
 	<section style:--hue={toHue($fastMutableMap.value.get('a'))}>
+		<pre class="panel-inset">
+			{@html examples.EDef}
+		</pre>
 		<p class="count-wrapper">
 			<span class="count">{$fastMutableMap.value.get('a')}</span>
 			<span class="read-example panel-inset">{@html examples.ERead}</span>
@@ -151,13 +163,16 @@
 			but it doesn't compose as an immutable value stream
 		</p>
 		<pre class="panel-inset">
-{@html examples.EWrite}
+			{@html examples.EWrite}
 		</pre>
 	</section>
 
 	<h2>
 		F. <code>mutable</code> store with manual update and set
 	</h2>
+	<pre class="panel-inset">
+		{@html examples.FDef}
+	</pre>
 	<section style:--hue={toHue($mutableMapManual.value.get('a'))}>
 		<p class="count-wrapper">
 			<span class="count">{$mutableMapManual.value.get('a')}</span>
@@ -168,11 +183,11 @@
 			manually calls <code>.update()</code>, which may be an antipattern
 		</p>
 		<pre class="panel-inset">
-{@html examples.F1Write}
+			{@html examples.F1Write}
 		</pre>
 		<p>an alternative using the store's <code>set</code> method:</p>
 		<pre class="panel-inset">
-{@html examples.F2Write}
+			{@html examples.F2Write}
 		</pre>
 		<p>
 			and you can set a new value if you need to, but if this is all you need, prefer a <code
@@ -180,11 +195,11 @@
 			>:
 		</p>
 		<pre class="panel-inset">
-{@html examples.F3Write}
+			{@html examples.F3Write}
 		</pre>
 		<p>or:</p>
 		<pre class="panel-inset">
-{@html examples.F4Write}
+			{@html examples.F4Write}
 		</pre>
 	</section>
 
