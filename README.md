@@ -111,21 +111,15 @@ but I'm no longer updating it.
   - [Twitter poll](https://twitter.com/ryanatkn/status/1482390036943360010)
     asking users if/how they use `immutable`
 
-## more notes and questions
+## discussion and questions
 
-- Why care about the immutable option? Mainly performance.
-  See [the official example](https://svelte.dev/examples/immutable-data).
-  It arguably encourages good code practices, but this is contentious and largely subjective.
-- Can we solve this problem with a better pattern than these custom stores? Am I missing
-  something? Maybe lightweight immutable maps/arrays/sets with structural sharing and an API
-  that jive with their JS counterparts? [Immutable.js](https://github.com/immutable-js/immutable-js)
-  version 4 is 65k minified and has patterns that diverge from the builtin collections
-  (which in some cases might be worth paying for),
-  and it doesn't solve the `WeakMap` usecase.
-- Is `fastMutable`'s strategy of swapping between two stable references a dangerous
-  footgun? It doesn't compose with code that expects every change to be referentially unique.
-  Should the `mutable` implementation be preferred in all cases?
-- Are there better names than `mutable` and `fastMutable`?
+See [this GitHub discussion](https://github.com/spiderspace/spiderspace/discussions/5)
+for the questions I'm trying to answer.
+Your input is appreciated!
+
+Why care about the immutable option? Mainly performance.
+See [the official example](https://svelte.dev/examples/immutable-data).
+It arguably encourages good code practices, but this is contentious and largely subjective.
 
 ## more about `immutable`
 
