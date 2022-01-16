@@ -91,7 +91,8 @@ There are additional notes and questions below.
 The code is deployed to
 [spiderspace.github.io/mutable](https://spiderspace.github.io/mutable)
 and there's also
-[this REPL demonstration](https://svelte.dev/repl/0d7852935b2247a89cb04255f374a309?version=3.46.1).
+[this REPL demonstration](https://svelte.dev/repl/0d7852935b2247a89cb04255f374a309?version=3.46.1),
+but I'm no longer updating it.
 
 - usecases:
   - large maps and arrays of stores (client-side indexes of reactive backend state)
