@@ -23,6 +23,10 @@ and/or
   turning to heavyweight opinionated immutable data structures libraries
 - need to use `WeakMap` in reactive stores, and other things that are absent from immutable libraries
 
+> How commonly do Svelte users enable the `immutable` compiler option?
+> I made [this Twitter poll](https://twitter.com/ryanatkn/status/1482390036943360010)
+> to get an idea, but remember, it's just a selection of Twitter users.
+
 ## problem?
 
 The [`immutable` compiler option](https://svelte.dev/docs#compile-time-svelte-compile),
@@ -130,8 +134,8 @@ but I'm no longer updating it.
 Svelte defaults to `immutable: false`,
 so most Svelte developers don't use it,
 and the usecases outlined above are niche.
-[The docs](https://svelte.dev/docs#compile-time-svelte-compile)
-describe the feature with:
+Here's how [the docs](https://svelte.dev/docs#compile-time-svelte-compile)
+describe the feature:
 
 > If `true`, tells the compiler that you promise not to mutate any objects.
 > This allows it to be less conservative about checking whether values have changed.
@@ -177,6 +181,19 @@ The difference is this clause:
 
 With `immutable` enabled, objects and functions are compared with `===`.
 With it disabled, the code has to assume objects and functions change every time they're checked.
+
+### `immutable` recipe?
+
+SvelteSociety has a recipe on
+["Using the `immutable` Compiler Option"](https://sveltesociety.dev/recipes/svelte-language-fundamentals/options-immutable).
+I was disappointed to discover that the content was written mostly by me,
+from a while back, and it could use some love.
+It explains the basics, but doesn't explore related patterns and issues.
+This document (and code?) may be suitable for repurposing into a recipe,
+or into a related one, and the license is public domain so anyone can do whatever with it.
+The main problem with making this a recipe
+is that it's written as two documents with different content:
+one markdown readme and another live example.
 
 ## usage
 
