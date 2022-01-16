@@ -104,7 +104,6 @@ but I'm no longer updating it.
 - questions
   - is `fastMutable` a footgun?
   - names?
-  - `set` method? (maybe for `bind:` patterns?) guidance against using it?
 - want to help?
   - spiderspace discussions post (TODO make this post and link it)
   - please share your thoughts on Twitter or YouTube! (TODO make a video and tweet?)
