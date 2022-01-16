@@ -7,17 +7,17 @@
 
 		
 
-		<link rel="modulepreload" href="/mutable/_app/start-eb20487d.js">
+		<link rel="modulepreload" href="/mutable/_app/start-9fa82fa9.js">
 		<link rel="modulepreload" href="/mutable/_app/chunks/vendor-7ffe92ef.js">
 		<link rel="modulepreload" href="/mutable/_app/chunks/paths-28a87002.js">
 		<link rel="modulepreload" href="/mutable/_app/pages/__layout.svelte-6d6a125f.js">
-		<link rel="modulepreload" href="/mutable/_app/pages/index.svelte-2f768ce6.js">
+		<link rel="modulepreload" href="/mutable/_app/pages/index.svelte-1cecfdbd.js">
 		<link rel="stylesheet" href="/mutable/_app/assets/start-61d1577b.css">
 		<link rel="stylesheet" href="/mutable/_app/assets/pages/__layout.svelte-9b0f5d2e.css">
 		<link rel="stylesheet" href="/mutable/_app/assets/pages/index.svelte-9c8b29a7.css">
 
 		<script type="module">
-			import { start } from "/mutable/_app/start-eb20487d.js";
+			import { start } from "/mutable/_app/start-9fa82fa9.js";
 			start({
 				target: document.body,
 				paths: {"base":"/mutable","assets":""},
@@ -31,7 +31,7 @@
 					error: null,
 					nodes: [
 						import("/mutable/_app/pages/__layout.svelte-6d6a125f.js"),
-						import("/mutable/_app/pages/index.svelte-2f768ce6.js")
+						import("/mutable/_app/pages/index.svelte-1cecfdbd.js")
 					],
 					page: {
 						host: location.host, // TODO this is redundant
@@ -123,7 +123,9 @@ $mutableMapManual = $mutableMapManual.value;
 		<p>and you can set a new value if you need to, but if this is all you need, prefer a <code class="svelte-5qhvja">writable</code>:
 		</p>
 		<pre class="panel-inset svelte-5qhvja">$mutableMapManual = new Map([/*...*/]);
-mutableMapManual.update(() =&gt; new Map([/*...*/]));
+		</pre>
+		<p>or:</p>
+		<pre class="panel-inset svelte-5qhvja">mutableMapManual.update(() =&gt; new Map([/*...*/]));
 		</pre></section>
 
 	<hr>
