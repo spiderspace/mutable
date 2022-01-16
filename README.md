@@ -125,8 +125,8 @@ Your input is appreciated!
 
 ## more about `immutable`
 
-Svelte defaults to `immutable: false`,
-so most Svelte developers don't use it,
+Svelte defaults to `immutable: false`, so
+[most Svelte developers don't use it](https://twitter.com/ryanatkn/status/1482390036943360010),
 and the usecases outlined above are niche.
 Here's how [the docs](https://svelte.dev/docs#compile-time-svelte-compile)
 describe the feature:
