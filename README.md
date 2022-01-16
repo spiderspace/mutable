@@ -67,7 +67,7 @@ make our normal JS code _mostly_ compatible, but they're inefficient for large c
 we want to avoid copying large data structures.
 
 And furthermore, libraries like Immutable.js and Immer do not work with with `WeakMap`s,
-so neither is a complete solution.
+so neither is a complete solution for the cases we laid out.
 
 We could try to enable `immutable` globally and opt out on a per-component basis, or vice versa,
 but this is error prone and adds a lot of mental overhead,
