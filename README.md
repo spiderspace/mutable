@@ -21,7 +21,7 @@ and/or
 
 - want to optimize their apps' performance for usecases like large collections without
   turning to heavyweight opinionated immutable data structures libraries
-- need to use things like `WeakMap` in reactive stores that are absent from immutable libraries
+- need to use `WeakMap` in reactive stores, and other things that are absent from immutable libraries
 
 ## problem?
 
@@ -62,6 +62,8 @@ we want to avoid copying large data structures.
 
 And furthermore, libraries like Immutable.js and Immer do not work with with `WeakMap`s,
 so neither is a complete solution for the cases we laid out.
+(however niche the usecases may be, I have them!
+hence this overly detailed document that will interest few people)
 
 We could try to enable `immutable` globally and opt out on a per-component basis, or vice versa,
 but this is error prone and adds a lot of mental overhead,
@@ -71,7 +73,7 @@ in a component where you use a `WeakMap` in a `writable`, for example,
 your component will silently not react to changes;
 silent bugs can be quite painful.
 
-Is there a sweet spot for this use case? Can we enable the immutable option globally
+Is there a sweet spot for this usecase? Can we enable the immutable option globally
 while treating large collections as reactive mutable values?
 
 ## solution?
