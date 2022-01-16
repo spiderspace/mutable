@@ -71,12 +71,15 @@
 		A. <code>writable</code> store (broken! D:)
 	</h2>
 	<section style:--hue={toHue($writableMap.get('a'))}>
-		<p>
+		<p class="count-wrapper">
 			<span class="count">{$writableMap.get('a')}</span>
-			← fails to update as a <code>writable</code> store because <code>immutable={'{'}true}</code>
+			<span class="read-example panel-inset">{@html examples.ARead}</span>
+		</p>
+		<p>
+			↑ fails to update as a <code>writable</code> store because <code>immutable={'{'}true}</code>
 		</p>
 		<pre class="panel-inset">
-{@html examples.A}
+{@html examples.AWrite}
 		</pre>
 	</section>
 
@@ -84,30 +87,36 @@
 		B. cloned <code>writable</code> store
 	</h2>
 	<section style:--hue={toHue($writableMapCloned.get('a'))}>
-		<p>
+		<p class="count-wrapper">
 			<span class="count">{$writableMapCloned.get('a')}</span>
-			← works, but in some cases, causes tremendous garbage and slowness
+			<span class="read-example panel-inset">{@html examples.BRead}</span>
 		</p>
+		<p>↑ works, but in some cases, causes tremendous garbage and slowness</p>
 		<pre class="panel-inset">
-{@html examples.B}
+{@html examples.BWrite}
 		</pre>
 	</section>
 
-	<blockquote>
+	<hr />
+	<blockquote style="margin-bottom: 0">
 		in the examples below, notice that you need to access <code>.value</code> for reads, unlike above
 	</blockquote>
+	<hr />
 
 	<h2>
 		C. <code>derived</code> from <code>writable</code> store
 	</h2>
 	<section style:--hue={toHue($derivedWritableMap.value.get('a'))}>
-		<p>
+		<p class="count-wrapper">
 			<span class="count">{$derivedWritableMap.value.get('a')}</span>
-			← works with no new libraries, and doesn't clone the map, but now we're juggling two stores, one
-			for writes and one for reads, and it creates garbage every change
+			<span class="read-example panel-inset">{@html examples.CRead}</span>
+		</p>
+		<p>
+			↑ works with no new libraries, and doesn't clone the map, but now we're juggling two stores,
+			one for writes and one for reads, and it creates garbage every change
 		</p>
 		<pre class="panel-inset">
-{@html examples.C}
+{@html examples.CWrite}
 		</pre>
 	</section>
 
@@ -115,13 +124,16 @@
 		D. <code>mutable</code> store
 	</h2>
 	<section style:--hue={toHue($mutableMap.value.get('a'))}>
-		<p>
+		<p class="count-wrapper">
 			<span class="count">{$mutableMap.value.get('a')}</span>
-			← works because it's a <code>mutable</code> store; doesn't clone the map; however notice that
-			you need to access <code>.value</code>
+			<span class="read-example panel-inset">{@html examples.DRead}</span>
+		</p>
+		<p>
+			↑ works because it's a <code>mutable</code> store; doesn't clone the map; however notice that
+			you need to access <code>.value</code> on reads
 		</p>
 		<pre class="panel-inset">
-{@html examples.D}
+{@html examples.DWrite}
 		</pre>
 	</section>
 
@@ -129,14 +141,17 @@
 		E. <code>fastMutable</code> store
 	</h2>
 	<section style:--hue={toHue($fastMutableMap.value.get('a'))}>
-		<p>
+		<p class="count-wrapper">
 			<span class="count">{$fastMutableMap.value.get('a')}</span>
-			← works because it's a <code>fastMutable</code> store, which compared to
+			<span class="read-example panel-inset">{@html examples.ERead}</span>
+		</p>
+		<p>
+			↑ works because it's a <code>fastMutable</code> store, which compared to
 			<code>mutable</code> is slightly more efficient because it swaps between two stable object references,
 			but it doesn't compose as an immutable value stream
 		</p>
 		<pre class="panel-inset">
-{@html examples.E}
+{@html examples.EWrite}
 		</pre>
 	</section>
 
@@ -144,17 +159,20 @@
 		F. <code>mutable</code> store with manual update and set
 	</h2>
 	<section style:--hue={toHue($mutableMapManual.value.get('a'))}>
-		<p>
+		<p class="count-wrapper">
 			<span class="count">{$mutableMapManual.value.get('a')}</span>
-			← works because it's a <code>mutable</code> store, but mutates the value directly and then
-			manually calls <code>.update()</code>, which seems like an antipattern
+			<span class="read-example panel-inset">{@html examples.FRead}</span>
+		</p>
+		<p>
+			↑ works because it's a <code>mutable</code> store, but mutates the value directly and then
+			manually calls <code>.update()</code>, which may be an antipattern
 		</p>
 		<pre class="panel-inset">
-{@html examples.F1}
+{@html examples.F1Write}
 		</pre>
 		<p>an alternative using the store's <code>set</code> method:</p>
 		<pre class="panel-inset">
-{@html examples.F2}
+{@html examples.F2Write}
 		</pre>
 		<p>
 			and you can set a new value if you need to, but if this is all you need, prefer a <code
@@ -162,11 +180,11 @@
 			>:
 		</p>
 		<pre class="panel-inset">
-{@html examples.F3}
+{@html examples.F3Write}
 		</pre>
 		<p>or:</p>
 		<pre class="panel-inset">
-{@html examples.F4}
+{@html examples.F4Write}
 		</pre>
 	</section>
 
@@ -209,7 +227,7 @@
 	}
 	.count {
 		background-color: hsl(var(--hue), 70%, 90%);
-		padding: 0 1em;
+		padding: var(--spacing_sm) var(--spacing_lg);
 		font-size: var(--font_size_xl);
 	}
 	h2 {
@@ -219,5 +237,11 @@
 		display: flex;
 		justify-content: center;
 		padding-bottom: var(--spacing_xl3);
+	}
+	.count-wrapper {
+		display: flex;
+	}
+	.read-example {
+		padding: var(--spacing_lg);
 	}
 </style>

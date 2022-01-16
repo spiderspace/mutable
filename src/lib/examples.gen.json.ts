@@ -2,23 +2,29 @@ import {type Gen} from '@feltcoop/gro';
 import Prism from 'prismjs';
 
 const data = {
-	A: `$writableMap.set('a', $writableMap.get('a') + 1);
+	ARead: `$writableMap.get('a')`,
+	AWrite: `$writableMap.set('a', $writableMap.get('a') + 1);
 $writableMap = $writableMap;`,
-	B: `$writableMapCloned.set('a', $writableMapCloned.get('a') + 1);
+	BRead: `$writableMapCloned.get('a')`,
+	BWrite: `$writableMapCloned.set('a', $writableMapCloned.get('a') + 1);
 $writableMapCloned = new Map($writableMapCloned);`,
-	C: `const derivedWritableMap = derived(writableMap, ($v) => ({value: $v}));`,
-	D: `mutableMap.update(($v) => {
+	CRead: `$derivedWritableMap.value.get('a')`,
+	CWrite: `const derivedWritableMap = derived(writableMap, ($v) => ({value: $v}));`,
+	DRead: `$mutableMap.value.get('a')`,
+	DWrite: `mutableMap.update(($v) => {
 	$v.set('a', $v.get('a') + 1);
 });`,
-	E: `fastMutableMap.update(($v) => {
+	ERead: `$fastMutableMap.value.get('a')`,
+	EWrite: `fastMutableMap.update(($v) => {
 	$v.set('a', $v.get('a') + 1);
 });`,
-	F1: `$mutableMapManual.value.set('a', $mutableMapManual.value.get('a') + 1);
+	FRead: `$mutableMapManual.value.get('a')`,
+	F1Write: `$mutableMapManual.value.set('a', $mutableMapManual.value.get('a') + 1);
 mutableMapManual.update();`,
-	F2: `$mutableMapManual.value.set('a', $mutableMapManual.value.get('a') + 1);
+	F2Write: `$mutableMapManual.value.set('a', $mutableMapManual.value.get('a') + 1);
 $mutableMapManual = $mutableMapManual.value;`,
-	F3: `$mutableMapManual = new Map([/*...*/]);`,
-	F4: `mutableMapManual.update(() => new Map([/*...*/]));`,
+	F3Write: `$mutableMapManual = new Map([/*...*/]);`,
+	F4Write: `mutableMapManual.update(() => new Map([/*...*/]));`,
 };
 
 export const gen: Gen = async () => {
