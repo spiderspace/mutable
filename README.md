@@ -8,7 +8,7 @@
 | ---------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------------- |
 | [www.spiderspace.org](https://www.spiderspace.org)                     | [spiderspace/spiderspace](https://github.com/spiderspace/spiderspace) | Svelte; safe&serializable layout&content blocks                             |
 | [spiderspace.github.io/about](https://spiderspace.github.io/about)     | [spiderspace/about](https://github.com/spiderspace/about)             | Svelte+[iconify](https://github.com/iconify); spiderspace is web prototypes |
-| [spiderspace.github.io/mutable](https://spiderspace.github.io/mutable) | **spiderspace/mutable**                                               | mutable values in Svelte stores w/ `immutable` on                           |
+| [spiderspace.github.io/mutable](https://spiderspace.github.io/mutable) | **spiderspace/mutable**                                               | Svelte; mutable store values w/ `immutable` on                              |
 
 ## who is this for?
 
