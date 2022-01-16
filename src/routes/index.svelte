@@ -170,6 +170,9 @@ $mutableMapManual = $mutableMapManual.value;
 		</p>
 		<pre class="panel-inset">
 $mutableMapManual = new Map([/*...*/]);
+		</pre>
+		<p>or:</p>
+		<pre class="panel-inset">
 mutableMapManual.update(() => new Map([/*...*/]));
 		</pre>
 	</section>
