@@ -33,11 +33,8 @@ The [`immutable` compiler option](https://svelte.dev/docs#compile-time-svelte-co
 which is `false` by default in Svelte and SvelteKit,
 can sometimes improve performance as demonstrated in
 [the official example](https://svelte.dev/examples/immutable-data).
-
-You can enable it app-wide in SvelteKit with
-[the config's `compilerOptions`](https://kit.svelte.dev/docs#configuration)
-or locally per component
-[with `<svelte:options>`](https://svelte.dev/docs#template-syntax-svelte-options).
+To learn more, see
+[this section below](https://github.com/spiderspace/mutable#more-about-immutable).
 
 Better performance you say? Sounds great, right?
 Unfortunately immutability is incompatible with some common patterns.
