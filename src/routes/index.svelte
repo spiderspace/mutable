@@ -74,13 +74,16 @@
 		<pre class="panel-inset">
 			{@html examples.ADef}
 		</pre>
-		<p class="count-wrapper">
-			<span class="count">{$writableMap.get('a')}</span>
-			<span class="read-example panel-inset">{@html examples.ARead}</span>
-		</p>
-		<p>
-			↑ fails to update as a <code>writable</code> store because <code>immutable={'{'}true}</code>
-		</p>
+		<div class="count-with-label">
+			<p class="count-wrapper panel-outset">
+				<span class="count">{$writableMap.get('a')}</span>
+				<span class="read-example">{@html examples.ARead}</span>
+			</p>
+			<p class="count-label">
+				fails to update as a <code>writable</code> store because <code>immutable={'{'}true}</code> and
+				we're mutating the map
+			</p>
+		</div>
 		<pre class="panel-inset">
 			{@html examples.AWrite}
 		</pre>
@@ -93,11 +96,13 @@
 		<pre class="panel-inset">
 			{@html examples.BDef}
 		</pre>
-		<p class="count-wrapper">
-			<span class="count">{$writableMapCloned.get('a')}</span>
-			<span class="read-example panel-inset">{@html examples.BRead}</span>
-		</p>
-		<p>↑ works, but in some cases, causes tremendous garbage and slowness</p>
+		<div class="count-with-label">
+			<p class="count-wrapper panel-outset">
+				<span class="count">{$writableMapCloned.get('a')}</span>
+				<span class="read-example">{@html examples.BRead}</span>
+			</p>
+			<p class="count-label">works, but in some cases, causes tremendous garbage and slowness</p>
+		</div>
 		<pre class="panel-inset">
 			{@html examples.BWrite}
 		</pre>
@@ -116,14 +121,16 @@
 		<pre class="panel-inset">
 			{@html examples.CDef}
 		</pre>
-		<p class="count-wrapper">
-			<span class="count">{$derivedWritableMap.value.get('a')}</span>
-			<span class="read-example panel-inset">{@html examples.CRead}</span>
-		</p>
-		<p>
-			↑ works with no new modules, and doesn't clone the map, but now we're juggling two stores, one
-			for writes and one for reads, and it creates garbage every change
-		</p>
+		<div class="count-with-label">
+			<p class="count-wrapper panel-outset">
+				<span class="count">{$derivedWritableMap.value.get('a')}</span>
+				<span class="read-example">{@html examples.CRead}</span>
+			</p>
+			<p class="count-label">
+				works with no new modules, and doesn't clone the map, but now we're juggling two stores, one
+				for writes and one for reads, and it creates garbage every change
+			</p>
+		</div>
 		<pre class="panel-inset">
 			{@html examples.CWrite}
 		</pre>
@@ -136,14 +143,16 @@
 		<pre class="panel-inset">
 			{@html examples.DDef}
 		</pre>
-		<p class="count-wrapper">
-			<span class="count">{$mutableMap.value.get('a')}</span>
-			<span class="read-example panel-inset">{@html examples.DRead}</span>
-		</p>
-		<p>
-			↑ works because it's a <code>mutable</code> store; doesn't clone the map; however notice that
-			you need to access <code>.value</code> on reads
-		</p>
+		<div class="count-with-label">
+			<p class="count-wrapper panel-outset">
+				<span class="count">{$mutableMap.value.get('a')}</span>
+				<span class="read-example">{@html examples.DRead}</span>
+			</p>
+			<p class="count-label">
+				works because it's a <code>mutable</code> store; doesn't clone the map; however notice that
+				you need to access <code>.value</code> on reads
+			</p>
+		</div>
 		<pre class="panel-inset">
 			{@html examples.DWrite}
 		</pre>
@@ -156,15 +165,17 @@
 		<pre class="panel-inset">
 			{@html examples.EDef}
 		</pre>
-		<p class="count-wrapper">
-			<span class="count">{$fastMutableMap.value.get('a')}</span>
-			<span class="read-example panel-inset">{@html examples.ERead}</span>
-		</p>
-		<p>
-			↑ works because it's a <code>fastMutable</code> store, which compared to
-			<code>mutable</code> is slightly more efficient because it swaps between two stable object references,
-			but it doesn't compose as an immutable value stream
-		</p>
+		<div class="count-with-label">
+			<p class="count-wrapper panel-outset">
+				<span class="count">{$fastMutableMap.value.get('a')}</span>
+				<span class="read-example">{@html examples.ERead}</span>
+			</p>
+			<p class="count-label">
+				works because it's a <code>fastMutable</code> store, which compared to
+				<code>mutable</code> is slightly more efficient because it swaps between two stable object references,
+				but it doesn't compose as an immutable value stream, so it may be a dangerously too-clever design
+			</p>
+		</div>
 		<pre class="panel-inset">
 			{@html examples.EWrite}
 		</pre>
@@ -177,14 +188,16 @@
 		{@html examples.FDef}
 	</pre>
 	<section style:--hue={toHue($mutableMapManual.value.get('a'))}>
-		<p class="count-wrapper">
-			<span class="count">{$mutableMapManual.value.get('a')}</span>
-			<span class="read-example panel-inset">{@html examples.FRead}</span>
-		</p>
-		<p>
-			↑ works because it's a <code>mutable</code> store, but mutates the value directly and then
-			manually calls <code>.update()</code>, which may be an antipattern
-		</p>
+		<div class="count-with-label">
+			<p class="count-wrapper panel-outset">
+				<span class="count">{$mutableMapManual.value.get('a')}</span>
+				<span class="read-example">{@html examples.FRead}</span>
+			</p>
+			<p class="count-label">
+				works because it's a <code>mutable</code> store, but mutates the value directly and then
+				manually calls <code>.update()</code>, which may be an antipattern
+			</p>
+		</div>
 		<pre class="panel-inset">
 			{@html examples.F1Write}
 		</pre>
@@ -243,10 +256,26 @@
 		color: var(--orange);
 		border: 2px solid var(--orange);
 	}
+	.count-with-label {
+		display: flex;
+	}
+	.count-wrapper {
+		display: flex;
+	}
 	.count {
+		display: flex;
+		align-items: center;
 		background-color: hsl(var(--hue), 70%, 90%);
 		padding: var(--spacing_sm) var(--spacing_lg);
 		font-size: var(--font_size_xl);
+	}
+	.read-example {
+		display: flex;
+		align-items: center;
+		padding: var(--spacing_lg);
+	}
+	.count-label {
+		padding: var(--spacing_lg);
 	}
 	h2 {
 		margin-top: 1.5em;
@@ -256,10 +285,15 @@
 		justify-content: center;
 		padding-bottom: var(--spacing_xl3);
 	}
-	.count-wrapper {
-		display: flex;
-	}
-	.read-example {
-		padding: var(--spacing_lg);
+	@media (max-width: 600px) {
+		.count-with-label {
+			flex-wrap: wrap;
+		}
+		.count-wrapper {
+			flex-wrap: wrap;
+		}
+		.count-label {
+			padding: 0;
+		}
 	}
 </style>
