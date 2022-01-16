@@ -81,7 +81,7 @@ This project demonstrates two custom stores to address the usecases outlined abo
 [`fastMutable`](src/lib/fastMutable.ts).
 The solutions (and this document) are a WIP and I could use some help and feedback.
 The stores' code is trivial, but there's a bunch of details to think through,
-and the main goal of this repo is to explore patterns with the `immutable` option.
+and the main goal of this repo is to better understand the subtleties of the `immutable` option.
 
 The code is deployed to
 [spiderspace.github.io/mutable](https://spiderspace.github.io/mutable).
