@@ -21,7 +21,7 @@ and/or
 
 - want to optimize their apps' performance for usecases like large collections without
   turning to heavyweight opinionated immutable data structures libraries
-- need to use `WeakMap` in reactive stores, and other things that are absent from immutable libraries
+- need to use `WeakMap` in reactive stores, or other things that are absent from immutable libraries
 
 > How commonly do Svelte users enable the `immutable` compiler option?
 > I made [this Twitter poll](https://twitter.com/ryanatkn/status/1482390036943360010)
@@ -95,7 +95,8 @@ There's also
 [a REPL demo](https://svelte.dev/repl/0d7852935b2247a89cb04255f374a309?version=3.46.1)
 but I'm no longer updating it.
 
-- usecases:
+- usecases with `immutable` enabled:
+  - `WeakMap` and similar mutable objects in reactive stores
   - large maps and arrays of stores (client-side indexes of reactive backend state)
 - implementations
   - `mutable`, that wraps every store change in a new object reference as a `value` property
