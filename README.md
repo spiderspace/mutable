@@ -49,15 +49,15 @@ will need to avoid certain kinds of mutation. That's just part of the deal.
 
 However, immutability also causes problems in two cases that motivated this library:
 
-- putting an unclonable object like a
-  [`WeakMap`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap)
-  in a store and expecting reactivity to work -- see
-  [this minimal REPL example](https://svelte.dev/repl/32ab0ddd41734ca0872a641dd5d8b55f?version=3.46.2)
-- large arrays, maps, and other collections that are too expensive to copy,
-  where mutation is acceptable if we can get store reactivity to work
-  in components with `immutable` enabled
+1. putting an unclonable object like a
+   [`WeakMap`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap)
+   in a store and expecting reactivity to work -- see
+   [this minimal REPL example](https://svelte.dev/repl/32ab0ddd41734ca0872a641dd5d8b55f?version=3.46.2)
+2. large arrays, maps, and other collections that are too expensive to copy,
+   where mutation is acceptable if we can get store reactivity to work
+   in components with `immutable` enabled
 
-We could use a library with efficient immutable data structures,
+To address the second usecase, we could use a library with efficient immutable data structures,
 but then we're no longer using plain JS values
 and our related code and familiar patterns may be incompatible.
 Libraries like [Immutable.js](https://github.com/immutable-js/immutable-js/)
@@ -68,7 +68,7 @@ make our normal JS code _mostly_ compatible, but they're inefficient for large c
 we want to avoid copying large data structures.
 
 And furthermore, libraries like Immutable.js and Immer do not work with with `WeakMap`s,
-so neither is a complete solution for the cases we laid out.
+so neither works for the first usecase.
 (however niche the usecases may be, I have them!
 hence this overly detailed document that will interest few people)
 
