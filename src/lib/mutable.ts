@@ -3,7 +3,7 @@ import {writable, type Readable} from 'svelte/store';
 export interface Mutable<T> {
 	subscribe: Readable<{value: T}>['subscribe'];
 	update(updater?: MutableUpdater<T>): void;
-	set(value: T): void;
+	set(value: T): void; // typical usage is to mutate in `update`; this updates the ref if needed
 }
 
 // Returning `T` updates the `value` reference,
@@ -32,7 +32,7 @@ export interface MutableUpdater<T> {
  * @param value {any}
  */
 export const mutable = <T>(value: T): Mutable<T> => {
-	const {subscribe, set} = writable(/*<{value: T}>*/ {value});
+	const {subscribe, set} = writable({value});
 	return {
 		subscribe,
 		update: (updater) => {
