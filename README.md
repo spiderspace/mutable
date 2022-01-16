@@ -54,7 +54,8 @@ However, immutability also causes problems in two cases that motivated this libr
   in a store and expecting reactivity to work -- see
   [this minimal REPL example](https://svelte.dev/repl/32ab0ddd41734ca0872a641dd5d8b55f?version=3.46.2)
 - large arrays, maps, and other collections that are too expensive to copy,
-  where mutation is acceptable if we can get store reactivity to work at the component level
+  where mutation is acceptable if we can get store reactivity to work
+  in components with `immutable` enabled
 
 We could use a library with efficient immutable data structures,
 but then we're no longer using plain JS values
