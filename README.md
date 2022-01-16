@@ -45,7 +45,8 @@ However, immutability also causes problems in two cases that motivated this libr
 
 - putting a
   [`WeakMap`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap)
-  in a store and expecting reactivity to work
+  in a store and expecting reactivity to work -- see
+  [this minimal REPL example](https://svelte.dev/repl/32ab0ddd41734ca0872a641dd5d8b55f?version=3.46.2)
 - large arrays, maps, and other collections that are too expensive to copy,
   where mutation is acceptable if we can get store reactivity to work
 
@@ -75,16 +76,17 @@ while treating large collections as reactive mutable values?
 
 ## solution?
 
-This project demonstrates two custom stores to help solve this problem:
+This project demonstrates two custom stores to address the usecases outlined above:
 [`mutable`](/src/lib/mutable.ts) and
 [`fastMutable`](src/lib/fastMutable.ts).
-The solutions are a WIP and I could use some help and feedback.
-There are additional notes and questions below.
+The solutions (and this document) are a WIP and I could use some help and feedback.
+The stores' code is trivial, but there's a bunch of details to think through,
+and the main goal of this repo is to explore patterns with the `immutable` option.
 
 The code is deployed to
-[spiderspace.github.io/mutable](https://spiderspace.github.io/mutable)
-and there's also
-[this REPL demonstration](https://svelte.dev/repl/0d7852935b2247a89cb04255f374a309?version=3.46.1),
+[spiderspace.github.io/mutable](https://spiderspace.github.io/mutable).
+There's also
+[a REPL demo](https://svelte.dev/repl/0d7852935b2247a89cb04255f374a309?version=3.46.1)
 but I'm no longer updating it.
 
 - usecases:
