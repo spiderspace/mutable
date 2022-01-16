@@ -185,7 +185,9 @@ SvelteSociety has a recipe on
 I was disappointed to discover that the content was written mostly by me,
 from a while back, and it could use some love.
 It explains the basics, but doesn't explore related patterns and issues.
-This document (and code?) may be suitable for repurposing into a recipe,
+This document (and
+[code](https://spiderspace.github.io/mutable)?)
+may be suitable for repurposing into a recipe,
 and the license is public domain so anyone can do whatever with it.
 The main problem with making this a recipe
 is that it's written as two documents with different content:
