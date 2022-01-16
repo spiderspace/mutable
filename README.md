@@ -72,6 +72,10 @@ so neither is a complete solution.
 We could try to enable `immutable` globally and opt out on a per-component basis, or vice versa,
 but this is error prone and adds a lot of mental overhead,
 and it loses the efficiency of the `immutable` option for the rest of the component.
+If you enable `immutable` globally and forget to disable it
+in a component where you use a `WeakMap` in a store, for example,
+your component will silently not react to changes;
+silent bugs can be quite painful.
 
 Is there a sweet spot for this use case? Can we enable the immutable option globally
 while treating large collections as reactive mutable values?
