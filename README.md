@@ -99,14 +99,13 @@ but I'm no longer updating it.
   - `WeakMap` and similar mutable objects in reactive stores
   - large maps and arrays of stores (client-side indexes of reactive backend state)
 - implementations
-  - `mutable`, that wraps every store change in a new object reference as a `value` property
-  - `fastMutable` that tries to be efficient (maybe too clever)
-- questions
-  - is `fastMutable` a footgun?
-  - names?
+  - [`mutable`](/src/lib/mutable.ts),
+    that wraps every store change in a new object reference as a `value` property
+  - [`fastMutable`](/src/lib/fastMutable.ts) that tries to be efficient
+    (maybe [too clever](https://github.com/spiderspace/spiderspace/discussions/5))
 - want to help?
   - visit [the spiderspace discussion post](https://github.com/spiderspace/spiderspace/discussions/5)
-  - please share your thoughts on Twitter or YouTube! (TODO make a video and tweet?)
+  - share your thoughts on Twitter or YouTube (TODO make a video and tweet?)
   - if you'd prefer to discuss privately, email me at mail at ryanatkn dot com
 - see also
   - [Twitter poll](https://twitter.com/ryanatkn/status/1482390036943360010)
@@ -116,8 +115,7 @@ but I'm no longer updating it.
 
 - Why care about the immutable option? Mainly performance.
   See [the official example](https://svelte.dev/examples/immutable-data).
-- The usecases motivating these stores: large maps and other collections (often containing
-  stores) for complex client-side indexing.
+  It arguably encourages good code practices, but this is contentious and largely subjective.
 - Can we solve this problem with a better pattern than these custom stores? Am I missing
   something? Maybe lightweight immutable maps/arrays/sets with structural sharing and an API
   that jive with their JS counterparts? [Immutable.js](https://github.com/immutable-js/immutable-js)
