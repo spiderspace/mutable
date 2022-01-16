@@ -9,7 +9,7 @@
 	const writableMapCloned = writable(new Map(data)); // B.
 	const derivedWritableMap = derived(writableMap, ($v) => ({value: $v})); // C.
 	const mutableMap = mutable(new Map(data)); // D.
-	const mutableMapAntipattern = mutable(new Map(data)); // E.
+	const mutableMapManual = mutable(new Map(data)); // E.
 	const fastMutableMap = fastMutable(new Map(data)); // F.
 
 	const toHue = (count: number) => count * 37 + '';
@@ -51,11 +51,11 @@
 
 			// E. A `mutable` store that updates through what seems like an antipattern.
 			// Note that unlike the `update` method used in D., we have to use `.value` here.
-			$mutableMapAntipattern.value.set('a', $mutableMapAntipattern.value.get('a') + 1);
-			mutableMapAntipattern.update();
+			$mutableMapManual.value.set('a', $mutableMapManual.value.get('a') + 1);
+			mutableMapManual.update();
 			// or using `set`:
-			// $mutableMapAntipattern.value.set('a', $mutableMapAntipattern.value.get('a') + 1);
-			// $mutableMapAntipattern = $mutableMapAntipattern.value;
+			// $mutableMapManual.value.set('a', $mutableMapManual.value.get('a') + 1);
+			// $mutableMapManual = $mutableMapManual.value;
 
 			// F. A `fastMutable` store from a library that allows mutation with `immutable=true`.
 			fastMutableMap.update(($v) => {
@@ -70,10 +70,10 @@
 		A. <code>writable</code> store (broken! D:)
 	</h2>
 	<section style:--hue={toHue($writableMap.get('a'))}>
-		<div>
+		<p>
 			<span class="count">{$writableMap.get('a')}</span>
 			← fails to update as a <code>writable</code> store because <code>immutable={'{'}true}</code>
-		</div>
+		</p>
 		<pre class="panel-inset">
 $writableMap.set('a', $writableMap.get('a') + 1);
 $writableMap = $writableMap;
@@ -84,10 +84,10 @@ $writableMap = $writableMap;
 		B. cloned <code>writable</code> store
 	</h2>
 	<section style:--hue={toHue($writableMapCloned.get('a'))}>
-		<div>
+		<p>
 			<span class="count">{$writableMapCloned.get('a')}</span>
 			← works, but causes heart pain and in some cases tremendous garbage and slowness
-		</div>
+		</p>
 		<pre class="panel-inset">
 $writableMapCloned.set('a', $writableMapCloned.get('a') + 1);
 $writableMapCloned = new Map($writableMapCloned);
@@ -102,11 +102,11 @@ $writableMapCloned = new Map($writableMapCloned);
 		C. <code>derived</code> from <code>writable</code> store
 	</h2>
 	<section style:--hue={toHue($derivedWritableMap.value.get('a'))}>
-		<div>
+		<p>
 			<span class="count">{$derivedWritableMap.value.get('a')}</span>
 			← works with no new libraries, and doesn't clone the map, but we're juggling two stores, one for
 			writes and one for reads, and it creates garbage every change
-		</div>
+		</p>
 		<pre class="panel-inset">
 const derivedWritableMap = derived(writableMap, ($v) => ({'{'}value: $v}));
 		</pre>
@@ -116,11 +116,11 @@ const derivedWritableMap = derived(writableMap, ($v) => ({'{'}value: $v}));
 		D. <code>mutable</code> store
 	</h2>
 	<section style:--hue={toHue($mutableMap.value.get('a'))}>
-		<div>
+		<p>
 			<span class="count">{$mutableMap.value.get('a')}</span>
 			← works because it's a <code>mutable</code> store; doesn't clone the map; however notice that
 			you need to access <code>.value</code>
-		</div>
+		</p>
 		<pre class="panel-inset">
 mutableMap.update(($v) => {'{'}
 	$v.set('a', $v.get('a') + 1);
@@ -129,17 +129,31 @@ mutableMap.update(($v) => {'{'}
 	</section>
 
 	<h2>
-		E. <code>mutable</code> store antipattern
+		E. <code>mutable</code> store with manual update or set
 	</h2>
-	<section style:--hue={toHue($mutableMapAntipattern.value.get('a'))}>
-		<div>
-			<span class="count">{$mutableMapAntipattern.value.get('a')}</span>
+	<section style:--hue={toHue($mutableMapManual.value.get('a'))}>
+		<p>
+			<span class="count">{$mutableMapManual.value.get('a')}</span>
 			← works because it's a <code>mutable</code> store, but mutates the value directly and then
 			manually calls <code>.update()</code>, which seems like an antipattern
-		</div>
+		</p>
 		<pre class="panel-inset">
-$mutableMapAntipattern.value.set('a', $mutableMapAntipattern.value.get('a') + 1);
-mutableMapAntipattern.update();
+$mutableMapManual.value.set('a', $mutableMapManual.value.get('a') + 1);
+mutableMapManual.update();
+		</pre>
+		<p>an alternative using the store's <code>set</code> method:</p>
+		<pre class="panel-inset">
+$mutableMapManual.value.set('a', $mutableMapManual.value.get('a') + 1);
+$mutableMapManual = $mutableMapManual.value;
+		</pre>
+		<p>
+			and you can set a new value if you need to, but if this is all you need, prefer a <code
+				>writable</code
+			>:
+		</p>
+		<pre class="panel-inset">
+$mutableMapManual = new Map([/*...*/]);
+mutableMapManual.update(() => new Map([/*...*/]));
 		</pre>
 	</section>
 
@@ -147,12 +161,12 @@ mutableMapAntipattern.update();
 		F. <code>fastMutable</code> store
 	</h2>
 	<section style:--hue={toHue($fastMutableMap.value.get('a'))}>
-		<div>
+		<p>
 			<span class="count">{$fastMutableMap.value.get('a')}</span>
 			← works because it's a <code>fastMutable</code> store, which compared to
 			<code>mutable</code> is slightly more efficient because it swaps between two stable object references,
 			but it doesn't compose as an immutable value stream
-		</div>
+		</p>
 		<pre class="panel-inset">
 fastMutableMap.update(($v) => {'{'}
 	$v.set('a', $v.get('a') + 1);
@@ -165,10 +179,9 @@ fastMutableMap.update(($v) => {'{'}
 	<h2>notes:</h2>
 	<ul>
 		<li>
-			Why care about the immutable option? See this example: <a
-				href="https://svelte.dev/examples/immutable-data"
-				>https://svelte.dev/examples/immutable-data</a
-			>
+			Why care about the immutable option? Mainly performance. See <a
+				href="https://svelte.dev/examples/immutable-data">the official example</a
+			>.
 		</li>
 		<li>
 			The usecases motivating these stores: large maps and other collections (often containing
@@ -176,7 +189,11 @@ fastMutableMap.update(($v) => {'{'}
 		</li>
 		<li>
 			Can we solve this problem with a better pattern than these custom stores? Am I missing
-			something?
+			something? Maybe lightweight immutable maps/arrays/sets with structural sharing and an API
+			that jive with their JS counterparts? (<a href="https://github.com/immutable-js/immutable-js"
+				>Immutable.js</a
+			> v4 is 65k minified and has patterns that diverge from the builtin collections; which in some
+			cases might be worth paying for)
 		</li>
 		<li>
 			Is <code>fastMutable</code>'s strategy of swapping between two stable references a dangerous
@@ -184,7 +201,7 @@ fastMutableMap.update(($v) => {'{'}
 			Should the <code>mutable</code> implementation be preferred in all cases?
 		</li>
 		<li>
-			Are there bettes names than <code>mutable</code> and <code>fastMutable</code>?
+			Are there better names than <code>mutable</code> and <code>fastMutable</code>?
 		</li>
 		<li>
 			Add a <code>set</code> store method? Probably useful for <code>bind:</code> usage in some cases
@@ -208,7 +225,7 @@ fastMutableMap.update(($v) => {'{'}
 	}
 	pre {
 		padding: var(--spacing_lg);
-		margin-top: var(--spacing_lg);
+		margin: var(--spacing_lg) 0;
 	}
 	code {
 		background: hsl(17, 20%, 92%);

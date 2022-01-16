@@ -42,7 +42,8 @@ We could use a library with immutable data structures (perhaps with efficient st
 but then we're no longer using plain JS values
 and our related code and familiar patterns may be incompatible.
 Libraries like [Immutable.js](https://github.com/immutable-js/immutable-js/)
-have APIs that diverge from plain JS data structures, and they're not light dependencies.
+have APIs that diverge from plain JS data structures,
+and they're not light dependencies. (v4 is 65k minified)
 Libraries like [immer](https://github.com/immerjs/immer)
 make our normal JS code _mostly_ compatible, but they're inefficient for large collections;
 we want to avoid copying large data structures.
