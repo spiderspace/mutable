@@ -80,17 +80,19 @@ in a component where you use a `WeakMap` in a `writable`, for example,
 your component will silently not react to changes;
 silent bugs can be quite painful.
 
-Is there a sweet spot for this usecase? Can we enable the immutable option globally
+Is there a sweet spot for these usecases? Can we enable the immutable option globally
 while treating large collections as reactive mutable values?
 
 ## solution?
 
-This project demonstrates two custom stores to address the usecases outlined above:
+This project proposes two custom stores to address the usecases outlined above:
 [`mutable`](/src/lib/mutable.ts) and
 [`fastMutable`](src/lib/fastMutable.ts).
-The solutions (and this document) are a WIP and I could use some help and feedback.
+The solutions (and this document) are a WIP and
+[I could use some help and feedback](https://github.com/spiderspace/spiderspace/discussions/5).
 The stores' code is trivial, but there's a bunch of details to think through,
-and the main goal of this repo is to better understand the subtleties of the `immutable` option.
+and the main goals of this repo are to 1) develop good answers for the two usescases,
+and 2) better understand the subtleties of the `immutable` option.
 
 The code is deployed to
 [spiderspace.github.io/mutable](https://spiderspace.github.io/mutable).
@@ -99,8 +101,9 @@ There's also
 but I'm no longer updating it.
 
 - usecases with `immutable` enabled:
-  - `WeakMap` and similar mutable objects in reactive stores
-  - large maps and arrays of stores (client-side indexes of reactive backend state)
+  - `WeakMap` and similar mutable unclonable objects in stores
+  - large mutable maps, arrays, and other collections
+    (often containing stores, like for client-side indexes of reactive backend state)
 - implementations
   - [`mutable`](/src/lib/mutable.ts),
     that wraps every store change in a new object reference as a `value` property
@@ -109,7 +112,7 @@ but I'm no longer updating it.
 - want to help?
   - visit [the spiderspace discussion post](https://github.com/spiderspace/spiderspace/discussions/5)
   - share your thoughts on Twitter or YouTube (TODO make a video and tweet?)
-  - if you'd prefer to discuss privately, email me at mail at ryanatkn dot com
+  - if you'd prefer to discuss privately, email me at <mail@ryanatkn.com>
 - see also
   - [Twitter poll](https://twitter.com/ryanatkn/status/1482390036943360010)
     asking users if/how they use `immutable`
