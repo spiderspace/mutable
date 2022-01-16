@@ -9,8 +9,8 @@
 	const writableMapCloned = writable(new Map(data)); // B.
 	const derivedWritableMap = derived(writableMap, ($v) => ({value: $v})); // C.
 	const mutableMap = mutable(new Map(data)); // D.
-	const mutableMapManual = mutable(new Map(data)); // E.
-	const fastMutableMap = fastMutable(new Map(data)); // F.
+	const fastMutableMap = fastMutable(new Map(data)); // E.
+	const mutableMapManual = mutable(new Map(data)); // F.
 
 	const toHue = (count: number) => count * 37 + '';
 </script>
@@ -49,18 +49,18 @@
 				$v.set('a', $v.get('a') + 1);
 			});
 
-			// E. A `mutable` store that updates through what seems like an antipattern.
+			// E. A `fastMutable` store from a library that allows mutation with `immutable=true`.
+			fastMutableMap.update(($v) => {
+				$v.set('a', $v.get('a') + 1);
+			});
+
+			// F. A `mutable` store that updates through what seems like an antipattern.
 			// Note that unlike the `update` method used in D., we have to use `.value` here.
 			$mutableMapManual.value.set('a', $mutableMapManual.value.get('a') + 1);
 			mutableMapManual.update();
 			// or using `set`:
 			// $mutableMapManual.value.set('a', $mutableMapManual.value.get('a') + 1);
 			// $mutableMapManual = $mutableMapManual.value;
-
-			// F. A `fastMutable` store from a library that allows mutation with `immutable=true`.
-			fastMutableMap.update(($v) => {
-				$v.set('a', $v.get('a') + 1);
-			});
 		}}
 	>
 		click me to make number++ go up
@@ -129,7 +129,24 @@ mutableMap.update(($v) => {'{'}
 	</section>
 
 	<h2>
-		E. <code>mutable</code> store with manual update or set
+		E. <code>fastMutable</code> store
+	</h2>
+	<section style:--hue={toHue($fastMutableMap.value.get('a'))}>
+		<p>
+			<span class="count">{$fastMutableMap.value.get('a')}</span>
+			← works because it's a <code>fastMutable</code> store, which compared to
+			<code>mutable</code> is slightly more efficient because it swaps between two stable object references,
+			but it doesn't compose as an immutable value stream
+		</p>
+		<pre class="panel-inset">
+fastMutableMap.update(($v) => {'{'}
+	$v.set('a', $v.get('a') + 1);
+});
+		</pre>
+	</section>
+
+	<h2>
+		F. <code>mutable</code> store with manual update and set
 	</h2>
 	<section style:--hue={toHue($mutableMapManual.value.get('a'))}>
 		<p>
@@ -154,23 +171,6 @@ $mutableMapManual = $mutableMapManual.value;
 		<pre class="panel-inset">
 $mutableMapManual = new Map([/*...*/]);
 mutableMapManual.update(() => new Map([/*...*/]));
-		</pre>
-	</section>
-
-	<h2>
-		F. <code>fastMutable</code> store
-	</h2>
-	<section style:--hue={toHue($fastMutableMap.value.get('a'))}>
-		<p>
-			<span class="count">{$fastMutableMap.value.get('a')}</span>
-			← works because it's a <code>fastMutable</code> store, which compared to
-			<code>mutable</code> is slightly more efficient because it swaps between two stable object references,
-			but it doesn't compose as an immutable value stream
-		</p>
-		<pre class="panel-inset">
-fastMutableMap.update(($v) => {'{'}
-	$v.set('a', $v.get('a') + 1);
-});
 		</pre>
 	</section>
 
