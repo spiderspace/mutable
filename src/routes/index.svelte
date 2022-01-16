@@ -175,42 +175,12 @@ fastMutableMap.update(($v) => {'{'}
 	</section>
 
 	<hr />
-
-	<h2>notes:</h2>
-	<ul>
-		<li>
-			Why care about the immutable option? Mainly performance. See <a
-				href="https://svelte.dev/examples/immutable-data">the official example</a
-			>.
-		</li>
-		<li>
-			The usecases motivating these stores: large maps and other collections (often containing
-			stores) for complex client-side indexing.
-		</li>
-		<li>
-			Can we solve this problem with a better pattern than these custom stores? Am I missing
-			something? Maybe lightweight immutable maps/arrays/sets with structural sharing and an API
-			that jive with their JS counterparts? (<a href="https://github.com/immutable-js/immutable-js"
-				>Immutable.js</a
-			> v4 is 65k minified and has patterns that diverge from the builtin collections; which in some
-			cases might be worth paying for)
-		</li>
-		<li>
-			Is <code>fastMutable</code>'s strategy of swapping between two stable references a dangerous
-			footgun? It doesn't compose with code that expects every change to be referentially unique.
-			Should the <code>mutable</code> implementation be preferred in all cases?
-		</li>
-		<li>
-			Are there better names than <code>mutable</code> and <code>fastMutable</code>?
-		</li>
-		<li>
-			Add a <code>set</code> store method? Probably useful for <code>bind:</code> usage in some cases
-			and less code than `update` to replace references.
-		</li>
-	</ul>
-	<hr />
 	<footer>
-		<a href="https://github.com/spiderspace/svelte-mutable">public domain source code on GitHub </a>
+		<p>
+			<a href="https://github.com/spiderspace/svelte-mutable"
+				>get the docs and public domain source code on GitHub</a
+			>
+		</p>
 	</footer>
 </main>
 
@@ -219,6 +189,8 @@ fastMutableMap.update(($v) => {'{'}
 		display: flex;
 		flex-direction: column;
 		margin: 0 auto;
+		/* TODO remove this after updating Felt */
+		min-width: 0;
 	}
 	h1 {
 		text-align: center;
@@ -226,6 +198,7 @@ fastMutableMap.update(($v) => {'{'}
 	pre {
 		padding: var(--spacing_lg);
 		margin: var(--spacing_lg) 0;
+		overflow: auto;
 	}
 	code {
 		background: hsl(17, 20%, 92%);

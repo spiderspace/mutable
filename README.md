@@ -27,26 +27,34 @@ or locally per component
 [with `<svelte:options>`](https://svelte.dev/docs#template-syntax-svelte-options).
 
 Better performance you say? Sounds great, right?
-The problem is immutability is incompatible with some patterns.
+Unfortunately immutability is incompatible with some common patterns.
+
 Many Svelte developers prefer to write code that mutates objects,
 and the language makes this very terse, like binding to store properties.
 (e.g. `<input bind:value={$store.text} />`)
+Let's consider this class of problem solvable; developers who choose immutability
+will need to avoid certain kinds of mutation. That's just part of the deal.
 
-Immutability also causes problems with large arrays, maps, and other collections.
-Let's say we want reactivity when those collections change and we have `immutable` enabled.
-Treating them as immutable and cloning on every change
-can cause performance problems when the collections grow large.
-This is the motivating usecase for this project: large JS collections like `Map`s and arrays.
+However, immutability also causes problems in two cases that motivated this library:
 
-We could use a library with immutable data structures (perhaps with efficient structural sharing),
+- putting a
+  [`WeakMap`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap)
+  in a reactive store
+- large arrays, maps, and other collections that are too expensive to copy,
+  where mutation is acceptable if we can get store reactivity to work
+
+We could use a library with efficient immutable data structures,
 but then we're no longer using plain JS values
 and our related code and familiar patterns may be incompatible.
 Libraries like [Immutable.js](https://github.com/immutable-js/immutable-js/)
 have APIs that diverge from plain JS data structures,
-and they're not light dependencies. (v4 is 65k minified)
+and they're not light dependencies. (version 4 is 65k minified)
 Libraries like [immer](https://github.com/immerjs/immer)
 make our normal JS code _mostly_ compatible, but they're inefficient for large collections;
 we want to avoid copying large data structures.
+
+And furthermore, libraries like `Immutable.js` and `immer` do not work with with `WeakMap`s,
+so neither is a complete solution.
 
 We could try to enable `immutable` globally and opt out on a per-component basis, or vice versa,
 but this is error prone and adds a lot of mental overhead,
@@ -85,9 +93,22 @@ and there's also
   - [Twitter poll](https://twitter.com/ryanatkn/status/1482390036943360010)
     asking users if they use `immutable`
 
-## alternatives?
+## more notes and questions
 
-- lightweight immutable data structures for maps and arrays that have structural sharing?
+- Why care about the immutable option? Mainly performance.
+  See [the official example](https://svelte.dev/examples/immutable-data).
+- The usecases motivating these stores: large maps and other collections (often containing
+  stores) for complex client-side indexing.
+- Can we solve this problem with a better pattern than these custom stores? Am I missing
+  something? Maybe lightweight immutable maps/arrays/sets with structural sharing and an API
+  that jive with their JS counterparts? [Immutable.js](https://github.com/immutable-js/immutable-js)
+  version 4 is 65k minified and has patterns that diverge from the builtin collections
+  (which in some cases might be worth paying for),
+  and it doesn't solve the `WeakMap` usecase.
+- Is `fastMutable`'s strategy of swapping between two stable references a dangerous
+  footgun? It doesn't compose with code that expects every change to be referentially unique.
+  Should the `mutable` implementation be preferred in all cases?
+- Are there better names than `mutable` and `fastMutable`?
 
 ## more info
 
