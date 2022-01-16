@@ -21,9 +21,9 @@ and/or
 
 - want to optimize their apps' performance for usecases like large collections without
   turning to heavyweight opinionated immutable data structures libraries
-- need to use
+- need to use unclonable objects like
   [`WeakMap`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap)
-  in reactive stores, or other unclonable things that are absent from immutable libraries
+  in stores without breaking their reactivity in components
 
 > How many users opt in to use the `immutable` compiler option?
 > I made [this Twitter poll](https://twitter.com/ryanatkn/status/1482390036943360010)
