@@ -105,7 +105,7 @@ but I'm no longer updating it.
   - is `fastMutable` a footgun?
   - names?
 - want to help?
-  - spiderspace discussions post (TODO make this post and link it)
+  - visit [the spiderspace discussion post](https://github.com/spiderspace/spiderspace/discussions/5)
   - please share your thoughts on Twitter or YouTube! (TODO make a video and tweet?)
   - if you'd prefer to discuss privately, email me at mail@ryanatkn.com
 - see also
