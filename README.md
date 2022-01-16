@@ -10,6 +10,19 @@
 | [spiderspace.github.io/about](https://spiderspace.github.io/about)     | [spiderspace/about](https://github.com/spiderspace/about)             | Svelte+[iconify](https://github.com/iconify); spiderspace is web prototypes |
 | [spiderspace.github.io/mutable](https://spiderspace.github.io/mutable) | **spiderspace/mutable**                                               | mutable values in Svelte stores w/ `immutable` on                           |
 
+## who is this for?
+
+1. Svelte users who have the bandwidth and curiosity to think about
+   [the `immutable` compiler option](https://svelte.dev/docs#compile-time-svelte-compile)
+
+and/or
+
+2. Svelte users who want to enable the `immutable` option and either:
+
+- want to optimize their apps' performance for usecases like large collections without
+  turning to heavyweight opinionated immutable data structures libraries
+- need to use things like `WeakMap` in reactive stores that are absent from immutable libraries
+
 ## problem?
 
 > deployed to
