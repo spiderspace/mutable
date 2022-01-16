@@ -101,7 +101,10 @@
 				<span class="count">{$writableMapCloned.get('a')}</span>
 				<span class="read-example">{@html examples.BRead}</span>
 			</p>
-			<p class="count-label">works, but in some cases, causes tremendous garbage and slowness</p>
+			<p class="count-label">
+				works for <code>Map</code>, but in some cases, causes tremendous garbage and slowness; also,
+				it does not work for <code>WeakMap</code>, one of the motivating usecases for this document
+			</p>
 		</div>
 		<pre class="panel-inset">
 			{@html examples.BWrite}
