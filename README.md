@@ -212,6 +212,15 @@ gro deploy
 
 ## credits 🐢<sub>🐢</sub><sub><sub>🐢</sub></sub>
 
+This project uses [`prismjs`](https://github.com/PrismJS/prism/)
+to generate static HTML at build time for syntax highlighting,
+so no runtime scripts are needed.
+It'd be neat to do this without
+[the roundabout codegen strategy](/src/lib/examples.gen.json.ts) assisted by
+[Gro](https://github.com/feltcoop/gro/blob/main/src/docs/gen.md),
+and instead have all of the code inline in the components.
+(but without adding runtime JS!)
+
 [Svelte](https://github.com/sveltejs/svelte) ∙
 [SvelteKit](https://github.com/sveltejs/kit) ∙
 [Vite](https://github.com/vitejs/vite) ∙
