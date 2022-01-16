@@ -76,6 +76,8 @@ If you enable `immutable` globally and forget to disable it
 in a component where you use a `WeakMap` in a `writable`, for example,
 your component will silently not react to changes;
 silent bugs can be quite painful.
+Overall I think it's best to wrap corner case objects with a custom store,
+so the mental overhead is localized to each data object.
 
 Is there a sweet spot for these usecases? Can we enable the immutable option globally
 while treating large collections as reactive mutable values?
