@@ -49,7 +49,7 @@ will need to avoid certain kinds of mutation. That's just part of the deal.
 
 However, immutability also causes problems in two cases that motivated this library:
 
-- putting a
+- putting an unclonable object like a
   [`WeakMap`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap)
   in a store and expecting reactivity to work -- see
   [this minimal REPL example](https://svelte.dev/repl/32ab0ddd41734ca0872a641dd5d8b55f?version=3.46.2)
