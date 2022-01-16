@@ -171,7 +171,7 @@ The difference is this clause:
 || (a && typeof a === 'object') || typeof a === 'function'
 ```
 
-With `immutable` enabled, objects and functions that have the same reference are considered equal.
+With `immutable` enabled, objects and functions are compared with `===`.
 With it disabled, the code has to assume objects and functions change every time they're checked.
 
 ## usage
