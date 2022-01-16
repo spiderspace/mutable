@@ -12,7 +12,7 @@
 
 ## who is this for?
 
-1. Svelte users who have the bandwidth and curiosity to think about
+1. Svelte users who have the time and curiosity to think about
    [the `immutable` compiler option](https://svelte.dev/docs#compile-time-svelte-compile)
 
 and/or
@@ -128,13 +128,16 @@ but I'm no longer updating it.
   Should the `mutable` implementation be preferred in all cases?
 - Are there better names than `mutable` and `fastMutable`?
 
-## more info
+## more about `immutable`
 
-This is both a niche and advanced topic,
-particularly because Svelte defaults to `immutable: false`.
-Many developers don't know or care about it,
-and the usecase motivating these stores is niche.
-(large data collections that cause performance problems when cloned)
+Svelte defaults to `immutable: false`,
+so most Svelte developers don't use it,
+and the usecases outlined above are niche.
+[The docs](https://svelte.dev/docs#compile-time-svelte-compile)
+describe the feature with:
+
+> If `true`, tells the compiler that you promise not to mutate any objects.
+> This allows it to be less conservative about checking whether values have changed.
 
 ### how to enable `immutable`?
 
