@@ -62,11 +62,11 @@ and our related code and familiar patterns may be incompatible.
 Libraries like [Immutable.js](https://github.com/immutable-js/immutable-js/)
 have APIs that diverge from plain JS data structures,
 and they're not light dependencies. (version 4 is 65k minified)
-Libraries like [immer](https://github.com/immerjs/immer)
+Libraries like [Immer](https://github.com/immerjs/immer)
 make our normal JS code _mostly_ compatible, but they're inefficient for large collections;
 we want to avoid copying large data structures.
 
-And furthermore, libraries like `Immutable.js` and `immer` do not work with with `WeakMap`s,
+And furthermore, libraries like Immutable.js and Immer do not work with with `WeakMap`s,
 so neither is a complete solution.
 
 We could try to enable `immutable` globally and opt out on a per-component basis, or vice versa,
