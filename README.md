@@ -1,19 +1,19 @@
-# svelte-mutable
+# mutable
 
 > using mutable values in Svelte stores with the immutable compiler option
 
 > **work in progress**: experimental
 
-| [🕸️](https://www.spiderspace.org)                                                    | [🐙🐱](https://github.com/spiderspace)                                | 🧪                                                                          |
-| ------------------------------------------------------------------------------------ | --------------------------------------------------------------------- | --------------------------------------------------------------------------- |
-| [www.spiderspace.org](https://www.spiderspace.org)                                   | [spiderspace/spiderspace](https://github.com/spiderspace/spiderspace) | Svelte; safe&serializable layout&content blocks                             |
-| [spiderspace.github.io/about](https://spiderspace.github.io/about)                   | [spiderspace/about](https://github.com/spiderspace/about)             | Svelte+[iconify](https://github.com/iconify); spiderspace is web prototypes |
-| [spiderspace.github.io/svelte-mutable](https://spiderspace.github.io/svelte-mutable) | **spiderspace/svelte-mutable**                                        | mutable values in Svelte stores with `immutable` enabled                    |
+| [🕸️](https://www.spiderspace.org)                                      | [🐙🐱](https://github.com/spiderspace)                                | 🧪                                                                          |
+| ---------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| [www.spiderspace.org](https://www.spiderspace.org)                     | [spiderspace/spiderspace](https://github.com/spiderspace/spiderspace) | Svelte; safe&serializable layout&content blocks                             |
+| [spiderspace.github.io/about](https://spiderspace.github.io/about)     | [spiderspace/about](https://github.com/spiderspace/about)             | Svelte+[iconify](https://github.com/iconify); spiderspace is web prototypes |
+| [spiderspace.github.io/mutable](https://spiderspace.github.io/mutable) | **spiderspace/mutable**                                               | mutable values in Svelte stores with `immutable` enabled                    |
 
 ## problem?
 
 > deployed to
-> [spiderspace.github.io/svelte-mutable](https://spiderspace.github.io/svelte-mutable),
+> [spiderspace.github.io/mutable](https://spiderspace.github.io/mutable),
 > and see also [this REPL](https://svelte.dev/repl/0d7852935b2247a89cb04255f374a309?version=3.46.1)
 
 The [`immutable` compiler option](https://svelte.dev/docs#compile-time-svelte-compile),
@@ -72,7 +72,7 @@ The solutions are a WIP and I could use some help and feedback.
 There are additional notes and questions below.
 
 The code is deployed to
-[spiderspace.github.io/svelte-mutable](https://spiderspace.github.io/svelte-mutable)
+[spiderspace.github.io/mutable](https://spiderspace.github.io/mutable)
 and there's also
 [this REPL demonstration](https://svelte.dev/repl/0d7852935b2247a89cb04255f374a309?version=3.46.1).
 

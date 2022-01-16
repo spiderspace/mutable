@@ -11,7 +11,7 @@ export default {
 	},
 	kit: {
 		adapter: static_adapter(),
-		paths: dev ? undefined : {base: '/svelte-mutable'}, // for GitHub pages -- delete this line for top-level domains
+		paths: dev ? undefined : {base: '/mutable'}, // for GitHub pages -- delete this line for top-level domains
 		files: {assets: 'src/static'},
 		vite: {
 			ssr: {

@@ -4,7 +4,7 @@
 </script>
 
 <svelte:head>
-	<title>svelte-mutable</title>
+	<title>mutable</title>
 	<link rel="icon" href="{base}/favicon.png" />
 </svelte:head>
 
