@@ -52,7 +52,7 @@ However, immutability also causes problems in two cases that motivated this libr
 
 - putting a
   [`WeakMap`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap)
-  in a reactive store
+  in a store and expecting reactivity to work
 - large arrays, maps, and other collections that are too expensive to copy,
   where mutation is acceptable if we can get store reactivity to work
 
