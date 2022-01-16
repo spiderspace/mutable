@@ -1,6 +1,6 @@
 # mutable
 
-> using mutable values in Svelte stores with the immutable compiler option
+> using mutable values in Svelte stores with the `immutable` compiler option
 
 > **work in progress**: experimental
 
