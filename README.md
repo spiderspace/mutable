@@ -110,7 +110,7 @@ but I'm no longer updating it.
   - if you'd prefer to discuss privately, email me at mail at ryanatkn dot com
 - see also
   - [Twitter poll](https://twitter.com/ryanatkn/status/1482390036943360010)
-    asking users if they use `immutable`
+    asking users if/how they use `immutable`
 
 ## more notes and questions
 
