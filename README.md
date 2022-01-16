@@ -12,12 +12,9 @@
 
 ## who is this for?
 
-1. Svelte users who have the time and curiosity to think about
-   [the `immutable` compiler option](https://svelte.dev/docs#compile-time-svelte-compile)
-
-and/or
-
-2. Svelte users who want to enable the `immutable` option and either:
+Svelte users using
+[the `immutable` compiler option](https://svelte.dev/docs#compile-time-svelte-compile)
+who either:
 
 - want to optimize their apps' performance for usecases like large collections without
   turning to heavyweight opinionated immutable data structures libraries
