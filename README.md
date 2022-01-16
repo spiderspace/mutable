@@ -117,10 +117,6 @@ See [this GitHub discussion](https://github.com/spiderspace/spiderspace/discussi
 for the questions I'm trying to answer.
 Your input is appreciated!
 
-Why care about the immutable option? Mainly performance.
-See [the official example](https://svelte.dev/examples/immutable-data).
-It arguably encourages good code practices, but this is contentious and largely subjective.
-
 ## more about `immutable`
 
 Svelte defaults to `immutable: false`,
