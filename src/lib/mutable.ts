@@ -33,7 +33,6 @@ export interface MutableUpdater<T> {
  */
 export const mutable = <T>(value: T): Mutable<T> => {
 	const {subscribe, set} = writable(/*<{value: T}>*/ {value});
-
 	return {
 		subscribe,
 		update: (updater) => {
