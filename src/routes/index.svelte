@@ -131,7 +131,7 @@
 			</p>
 			<p class="count-label">
 				works with no new modules, and doesn't clone the map, but now we're juggling two stores, one
-				for writes and one for reads, and it creates garbage every change
+				for writes and one for reads, and it creates a small amount of garbage every change
 			</p>
 		</div>
 		<pre class="panel-inset">
@@ -153,7 +153,8 @@
 			</p>
 			<p class="count-label">
 				works because it's a <code>mutable</code> store; doesn't clone the map; however notice that
-				you need to access <code>.value</code> on reads
+				you need to access <code>.value</code> on reads, and it creates a small amount of garbage every
+				change
 			</p>
 		</div>
 		<pre class="panel-inset">
@@ -176,7 +177,8 @@
 			<p class="count-label">
 				works because it's a <code>fastMutable</code> store, which compared to
 				<code>mutable</code> is slightly more efficient because it swaps between two stable object references,
-				but it doesn't compose as an immutable value stream, so it may be a dangerously too-clever design
+				so there's no extra garbage created, but it doesn't compose as an immutable value stream, so
+				it may be a dangerously too-clever design
 			</p>
 		</div>
 		<pre class="panel-inset">
@@ -204,7 +206,10 @@
 		<pre class="panel-inset">
 			{@html examples.F1Write}
 		</pre>
-		<p>an alternative using the store's <code>set</code> method:</p>
+		<p>
+			an alternative using the store's <code>set</code> method, which is extra awkward because of
+			the <code>.value</code>:
+		</p>
 		<pre class="panel-inset">
 			{@html examples.F2Write}
 		</pre>
