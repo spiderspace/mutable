@@ -112,7 +112,7 @@ but I'm no longer updating it.
 - want to help?
   - visit [the spiderspace discussion post](https://github.com/spiderspace/spiderspace/discussions/5)
   - share your thoughts on Twitter or YouTube (TODO make a video and tweet?)
-  - if you'd prefer to discuss privately, email me at <mail@ryanatkn.com>
+  - if you'd prefer to discuss privately, email me at mail at ryanatkn.com
 - see also
   - [Twitter poll](https://twitter.com/ryanatkn/status/1482390036943360010)
     asking users if/how they use `immutable`
