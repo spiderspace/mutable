@@ -107,6 +107,7 @@ They're demonstrated in [the code](/src/routes/index.svelte) deployed to
 > [a REPL demo](https://svelte.dev/repl/0d7852935b2247a89cb04255f374a309?version=3.46.1)
 > but it's falling behind and I'm no longer updating it.
 > It may be useful if you want to play with the code without setting up a dev environment.
+> Prefer the website though: [spiderspace.github.io/mutable](https://spiderspace.github.io/mutable)
 
 The solutions are a WIP and
 [I could use some help and feedback](https://github.com/spiderspace/spiderspace/discussions/5).
@@ -123,10 +124,10 @@ and I would appreciate any help!
     (often containing stores, like for client-side indexes of reactive backend state)
 - implementations
   - [`mutable`](/src/lib/mutable.ts),
-    that wraps every store change in a new object reference as a `value` property
+    that wraps every store change in a new object reference with a `value` property
   - [`fastMutable`](/src/lib/fastMutable.ts) that tries to be efficient and avoid creating garbage
     (maybe [too clever?](https://github.com/spiderspace/spiderspace/discussions/5))
-- interested? any questions or desire to help?
+- got any ideas, questions, or desire to help?
   - visit [the spiderspace discussion post](https://github.com/spiderspace/spiderspace/discussions/5)
   - share your thoughts on Twitter or YouTube (TODO make a video and tweet?)
   - if you'd prefer to discuss privately, email me at mail at ryanatkn.com
