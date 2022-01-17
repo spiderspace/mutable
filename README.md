@@ -87,21 +87,26 @@ with minimal overhead and good performance?
 We could try to enable `immutable` globally and opt out on a per-component basis, or vice versa,
 but this is error prone and adds a lot of mental overhead,
 because it forces us to think about the objects at the component level,
-instead of thinking about the objects' locally where they're defined.
+instead of thinking about the objects locally where they're defined.
 If you enable `immutable` globally and forget to disable it
-in a component where you use a `WeakMap` in a `writable`, for example,
-your component will silently not react to changes, which can be difficult to notice and diagnose.
-It also loses the efficiency of the `immutable` option for the rest of the component.
+in a component where, for example, you use a `WeakMap` in a `writable`,
+your component will silently fail to react to changes,
+which can be difficult to notice and diagnose.
+Disabling `immutable` per-component also
+loses the efficiency of the `immutable` option for the rest of the component,
+and makes developers context-switch as they navigate the codebase.
 
-This project proposes two custom stores to address the usecases outlined above:
+This project proposes two custom stores to address the usecases outlined above
+to support globally enabling `immutable`:
 [`mutable`](/src/lib/mutable.ts) and
 [`fastMutable`](src/lib/fastMutable.ts).
-They're demonstrated in example code that's deployed to
+They're demonstrated in [the code](/src/routes/index.svelte) deployed to
 [spiderspace.github.io/mutable](https://spiderspace.github.io/mutable).
 
 > There's also
 > [a REPL demo](https://svelte.dev/repl/0d7852935b2247a89cb04255f374a309?version=3.46.1)
-> but I'm no longer updating it.
+> but it's falling behind and I'm no longer updating it.
+> It may be useful if you want to play with the code without setting up a dev environment.
 
 The solutions are a WIP and
 [I could use some help and feedback](https://github.com/spiderspace/spiderspace/discussions/5).
@@ -112,15 +117,15 @@ and I would appreciate any help!
 
 ## summary
 
-- usecases with `immutable` enabled:
+- broken usecases with `immutable` enabled:
   - `WeakMap` and similar mutable unclonable objects in stores
   - large mutable maps, arrays, and other collections
     (often containing stores, like for client-side indexes of reactive backend state)
 - implementations
   - [`mutable`](/src/lib/mutable.ts),
     that wraps every store change in a new object reference as a `value` property
-  - [`fastMutable`](/src/lib/fastMutable.ts) that tries to be efficient
-    (maybe [too clever](https://github.com/spiderspace/spiderspace/discussions/5))
+  - [`fastMutable`](/src/lib/fastMutable.ts) that tries to be efficient and avoid creating garbage
+    (maybe [too clever?](https://github.com/spiderspace/spiderspace/discussions/5))
 - interested? any questions or desire to help?
   - visit [the spiderspace discussion post](https://github.com/spiderspace/spiderspace/discussions/5)
   - share your thoughts on Twitter or YouTube (TODO make a video and tweet?)
