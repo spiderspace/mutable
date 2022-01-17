@@ -35,16 +35,25 @@ can sometimes improve performance as demonstrated in
 To learn more, see
 [this section below](https://github.com/spiderspace/mutable#more-about-immutable).
 
-Better performance you say? Sounds great, right?
-Unfortunately immutability is incompatible with some common patterns.
+Better performance you say? Sounds great! ...right?
+Well, I must admit a huge caveat -- if we're not actually measuring anything,
+at best we're making an educated guess, and at worst we're cargo culting dubious practices
+with negative consequences for imperceptible benefit.
+So I should be clear: I'm not advocating for enabling the `immutable` in your code.
+I'll only say that I've used it exclusively for a couple years now,
+and I've had a good time with it, except for the problems we're about to discuss,
+and I think I have good solutions for them.
 
+Consider this example of negative consequences:
+immutability is incompatible with some common patterns.
 Many Svelte developers prefer to write code that mutates objects,
-and the language makes this very terse, like binding to store properties.
-(e.g. `<input bind:value={$store.text} />`)
-Let's consider this class of problem solvable; developers who choose immutability
-will need to avoid certain kinds of mutation. That's just part of the deal.
+and the language makes this very terse, like binding to store properties:
+`<input bind:value={$store.text} />` is just great.
+Let's consider this class of problem solvable, a cost you're willing you accept;
+developers who choose immutability will need to avoid certain kinds of mutation.
+That's just part of the deal. For me this is not overly burdensome.
 
-However, immutability also causes problems in two cases that motivated this library:
+However, immutability has presented me with two problems that motivated this project:
 
 1. putting an unclonable object like a
    [`WeakMap`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap)
@@ -62,42 +71,45 @@ have APIs that diverge from plain JS data structures,
 and they're not light dependencies. (version 4 is 65k minified)
 Libraries like [Immer](https://github.com/immerjs/immer)
 make our normal JS code _mostly_ compatible, but they're inefficient for large collections;
-we want to avoid copying large data structures.
+we want to avoid copying large data structures in our usecase.
 
 And furthermore, libraries like Immutable.js and Immer do not work with with `WeakMap`s,
 so neither works for the first usecase.
 (however niche the usecases may be, I have them!
 hence this overly detailed document that will interest few people)
 
-We could try to enable `immutable` globally and opt out on a per-component basis, or vice versa,
-but this is error prone and adds a lot of mental overhead,
-and it loses the efficiency of the `immutable` option for the rest of the component.
-If you enable `immutable` globally and forget to disable it
-in a component where you use a `WeakMap` in a `writable`, for example,
-your component will silently not react to changes;
-silent bugs can be quite painful.
-Overall I think it's best to wrap corner case objects with a custom store,
-so the mental overhead is localized to each data object.
-
 Is there a sweet spot for these usecases? Can we enable the immutable option globally
-while treating large collections as reactive mutable values?
+while treating unclonable objects and large collections as reactive mutable store values?
 
 ## solution?
+
+We could try to enable `immutable` globally and opt out on a per-component basis, or vice versa,
+but this is error prone and adds a lot of mental overhead,
+because it forces us to think about the objects at the component level,
+instead of thinking about the objects' locally where they're defined.
+If you enable `immutable` globally and forget to disable it
+in a component where you use a `WeakMap` in a `writable`, for example,
+your component will silently not react to changes, which can be difficult to notice and diagnose.
+It also loses the efficiency of the `immutable` option for the rest of the component.
 
 This project proposes two custom stores to address the usecases outlined above:
 [`mutable`](/src/lib/mutable.ts) and
 [`fastMutable`](src/lib/fastMutable.ts).
-The solutions (and this document) are a WIP and
-[I could use some help and feedback](https://github.com/spiderspace/spiderspace/discussions/5).
-The stores' code is trivial, but there's a bunch of details to think through,
-and the main goals of this repo are to 1) develop good answers for the two usescases,
-and 2) better understand the subtleties of the `immutable` option.
-
-The code is deployed to
+They're demonstrated in example code that's deployed to
 [spiderspace.github.io/mutable](https://spiderspace.github.io/mutable).
-There's also
-[a REPL demo](https://svelte.dev/repl/0d7852935b2247a89cb04255f374a309?version=3.46.1)
-but I'm no longer updating it.
+
+> There's also
+> [a REPL demo](https://svelte.dev/repl/0d7852935b2247a89cb04255f374a309?version=3.46.1)
+> but I'm no longer updating it.
+
+The solutions are a WIP and
+[I could use some help and feedback](https://github.com/spiderspace/spiderspace/discussions/5).
+The stores' code is trivial, but there's a bunch of details to think through.
+The main goals of this project are to 1) develop good answers for the two usescases,
+and 2) better understand the subtleties of the `immutable` option,
+and I would appreciate any help!
+
+## summary
 
 - usecases with `immutable` enabled:
   - `WeakMap` and similar mutable unclonable objects in stores
@@ -108,19 +120,13 @@ but I'm no longer updating it.
     that wraps every store change in a new object reference as a `value` property
   - [`fastMutable`](/src/lib/fastMutable.ts) that tries to be efficient
     (maybe [too clever](https://github.com/spiderspace/spiderspace/discussions/5))
-- want to help?
+- interested? any questions or desire to help?
   - visit [the spiderspace discussion post](https://github.com/spiderspace/spiderspace/discussions/5)
   - share your thoughts on Twitter or YouTube (TODO make a video and tweet?)
   - if you'd prefer to discuss privately, email me at mail at ryanatkn.com
 - see also
   - [Twitter poll](https://twitter.com/ryanatkn/status/1482390036943360010)
     asking users if/how they use `immutable`
-
-## discussion and questions
-
-See [this GitHub discussion](https://github.com/spiderspace/spiderspace/discussions/5)
-for the questions I'm trying to answer.
-Your input is appreciated!
 
 ## more about `immutable`
 
@@ -183,9 +189,9 @@ SvelteSociety has a recipe on
 ["Using the `immutable` Compiler Option"](https://sveltesociety.dev/recipes/svelte-language-fundamentals/options-immutable).
 I was disappointed to discover that the content was written mostly by me,
 from a while back, and it could use some love.
-It explains the basics, but doesn't explore related patterns and issues.
-This document (and
-[code](https://spiderspace.github.io/mutable)?)
+It explains some basics, but doesn't add much beyond the official docs
+or explore related patterns and issues. This document
+(and [code](https://spiderspace.github.io/mutable)?)
 may be suitable for repurposing into a recipe,
 and the license is public domain so anyone can do whatever with it.
 The main problem with making this a recipe
