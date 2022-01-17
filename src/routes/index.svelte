@@ -131,7 +131,8 @@
 			</p>
 			<p class="count-label">
 				works with no new modules, and doesn't clone the map, but now we're juggling two stores, one
-				for writes and one for reads, and it creates a small amount of garbage every change
+				for writes and one for reads; is error prone because reading the <code>writable</code> isn't
+				reactive!
 			</p>
 		</div>
 		<pre class="panel-inset">
@@ -153,8 +154,7 @@
 			</p>
 			<p class="count-label">
 				works because it's a <code>mutable</code> store; doesn't clone the map; however notice that
-				you need to access <code>.value</code> on reads, and it creates a small amount of garbage every
-				change
+				you need to access <code>.value</code> on reads
 			</p>
 		</div>
 		<pre class="panel-inset">
