@@ -27,7 +27,9 @@ export interface MutableUpdater<T> {
  *
  * Unlike `fastMutable`, this implementation creates a new object wrapper value on every change.
  * This composes with code that expects immutable references on every store change,
- * but creates a bit of garbage that's sometimes avoidable.
+ * but creates a bit of garbage that's sometimes avoidable,
+ * but given that the contents are typically mutable, I'm not sure it matters?
+ * For discussion see: https://github.com/spiderspace/spiderspace/discussions/5
  *
  * @param value {any}
  */

@@ -20,9 +20,11 @@ export interface MutableUpdater<T> {
  * the implementation swaps between two stable object references.
  * This breaks composability with code that
  * expects immutable references on every store change,
- * which may be too error prone for common usage.
- * See the alternative "mutable" (no "fast" prefix) version of this store
- * that creates a new wrapper object on every change.
+ * which may cause some surprising issues,
+ * but given that the contents are typically mutable, I'm not sure it matters?
+ * The alternative "mutable" (no "fast" prefix) version of this store
+ * creates a new wrapper object on every change.
+ * For dicusssion see: https://github.com/spiderspace/spiderspace/discussions/5
  *
  * @param value {any}
  */

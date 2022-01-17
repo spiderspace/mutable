@@ -1,7 +1,7 @@
 <script lang="ts">
-	import {writable, derived} from 'svelte/store'; // using `writable`+cloning is inefficient and `derived` is unwieldy
-	import {mutable} from '$lib/mutable'; // slightly less efficient than `fastMutable` but composes with pure code
-	import {fastMutable} from '$lib/fastMutable'; // this one is more efficient but doesn't compose with pure code
+	import {writable, derived} from 'svelte/store';
+	import {mutable} from '$lib/mutable';
+	import {fastMutable} from '$lib/fastMutable';
 	import examples from '$lib/examples.json';
 
 	const data: [any, any][] = [['a', 1]]; // pretend there's lots of data here; cloning usually performs fine with small data
