@@ -7,17 +7,17 @@
 
 		
 
-		<link rel="modulepreload" href="/mutable/_app/start-72529dc7.js">
+		<link rel="modulepreload" href="/mutable/_app/start-b3e3f68f.js">
 		<link rel="modulepreload" href="/mutable/_app/chunks/vendor-7ffe92ef.js">
 		<link rel="modulepreload" href="/mutable/_app/chunks/paths-28a87002.js">
 		<link rel="modulepreload" href="/mutable/_app/pages/__layout.svelte-7369779d.js">
-		<link rel="modulepreload" href="/mutable/_app/pages/index.svelte-cb28993d.js">
+		<link rel="modulepreload" href="/mutable/_app/pages/index.svelte-e8ef8fd4.js">
 		<link rel="stylesheet" href="/mutable/_app/assets/start-61d1577b.css">
 		<link rel="stylesheet" href="/mutable/_app/assets/pages/__layout.svelte-0ad0de83.css">
 		<link rel="stylesheet" href="/mutable/_app/assets/pages/index.svelte-d1a90a38.css">
 
 		<script type="module">
-			import { start } from "/mutable/_app/start-72529dc7.js";
+			import { start } from "/mutable/_app/start-b3e3f68f.js";
 			start({
 				target: document.body,
 				paths: {"base":"/mutable","assets":""},
@@ -31,7 +31,7 @@
 					error: null,
 					nodes: [
 						import("/mutable/_app/pages/__layout.svelte-7369779d.js"),
-						import("/mutable/_app/pages/index.svelte-cb28993d.js")
+						import("/mutable/_app/pages/index.svelte-e8ef8fd4.js")
 					],
 					page: {
 						host: location.host, // TODO this is redundant
@@ -138,9 +138,9 @@ mutableMapManual<span class="token punctuation">.</span><span class="token funct
 $mutableMapManual <span class="token operator">=</span> $mutableMapManual<span class="token punctuation">.</span>value<span class="token punctuation">;</span><!-- HTML_TAG_END --></pre>
 		<p>and you can set a new value if you need to, but if this is all you need, prefer a <code class="svelte-z1t7fb">writable</code>:
 		</p>
-		<pre class="panel-inset svelte-z1t7fb"><!-- HTML_TAG_START -->$mutableMapManual <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Map</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token comment">/*...*/</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span><!-- HTML_TAG_END --></pre>
+		<pre class="panel-inset svelte-z1t7fb"><!-- HTML_TAG_START -->$mutableMapManual <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Map</span><span class="token punctuation">(</span><span class="token comment">/*...*/</span><span class="token punctuation">)</span><span class="token punctuation">;</span><!-- HTML_TAG_END --></pre>
 		<p>or:</p>
-		<pre class="panel-inset svelte-z1t7fb"><!-- HTML_TAG_START -->mutableMapManual<span class="token punctuation">.</span><span class="token function">update</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token keyword">new</span> <span class="token class-name">Map</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token comment">/*...*/</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><!-- HTML_TAG_END --></pre></section>
+		<pre class="panel-inset svelte-z1t7fb"><!-- HTML_TAG_START -->mutableMapManual<span class="token punctuation">.</span><span class="token function">update</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token keyword">new</span> <span class="token class-name">Map</span><span class="token punctuation">(</span><span class="token comment">/*...*/</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><!-- HTML_TAG_END --></pre></section>
 
 	<hr>
 	<footer class="svelte-z1t7fb"><p><a href="https://github.com/spiderspace/mutable">get the docs and public domain source code on GitHub</a></p></footer>
