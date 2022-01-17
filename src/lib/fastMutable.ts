@@ -34,17 +34,21 @@ export const fastMutable = <T>(value: T): Mutable<T> => {
 	return {
 		subscribe,
 		update: (updater) => {
+			swap = !swap;
+			const next = swap ? b : a;
 			if (updater) {
 				const updated = updater(value);
 				if (updated !== undefined && updated !== value) {
-					value = a.value = b.value = updated;
+					value = next.value = updated;
 				}
 			}
-			set((swap = !swap) ? b : a);
+			set(next);
 		},
 		set: (v) => {
-			value = a.value = b.value = v;
-			set((swap = !swap) ? b : a);
+			swap = !swap;
+			const next = swap ? b : a;
+			value = next.value = v;
+			set(next);
 		},
 	};
 };

@@ -30,8 +30,8 @@ $writableMap = $writableMap;`,
 mutableMapManual.update();`,
 	F2Write: `$mutableMapManual.value.set('a', $mutableMapManual.value.get('a') + 1);
 $mutableMapManual = $mutableMapManual.value;`,
-	F3Write: `$mutableMapManual = new Map([/*...*/]);`,
-	F4Write: `mutableMapManual.update(() => new Map([/*...*/]));`,
+	F3Write: `$mutableMapManual = new Map(/*...*/);`,
+	F4Write: `mutableMapManual.update(() => new Map(/*...*/));`,
 };
 
 export const gen: Gen = async () => {
