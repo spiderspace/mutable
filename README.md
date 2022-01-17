@@ -79,7 +79,8 @@ so neither works for the first usecase.
 hence this overly detailed document that will interest few people)
 
 Is there a sweet spot for these usecases? Can we enable the immutable option globally
-while treating unclonable objects and large collections as reactive mutable store values?
+while treating unclonable objects and large collections as reactive mutable values
+with minimal overhead and good performance?
 
 ## solution?
 
