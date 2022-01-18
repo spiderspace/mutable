@@ -141,7 +141,10 @@
 	</section>
 
 	<h2>
-		D. <code>mutable</code> store
+		D. <code
+			><a href="https://github.com/spiderspace/mutable/blob/main/src/lib/mutable.ts">mutable</a
+			></code
+		> store
 	</h2>
 	<section style:--hue={toHue($mutableMap.value.get('a'))}>
 		<pre class="panel-inset">
@@ -153,8 +156,11 @@
 				<span class="read-example">{@html examples.DRead}</span>
 			</p>
 			<p class="count-label">
-				works because it's a <code>mutable</code> store; doesn't clone the map; however notice that
-				you need to access <code>.value</code> on reads
+				works because it's a <code
+					><a href="https://github.com/spiderspace/mutable/blob/main/src/lib/mutable.ts">mutable</a
+					></code
+				>
+				store; doesn't clone the map; however notice that you need to access <code>.value</code> on reads
 			</p>
 		</div>
 		<pre class="panel-inset">
@@ -163,7 +169,11 @@
 	</section>
 
 	<h2>
-		E. <code>fastMutable</code> store
+		E. <code
+			><a href="https://github.com/spiderspace/mutable/blob/main/src/lib/fastMutable.ts"
+				>fastMutable</a
+			></code
+		> store
 	</h2>
 	<section style:--hue={toHue($fastMutableMap.value.get('a'))}>
 		<pre class="panel-inset">
@@ -175,10 +185,18 @@
 				<span class="read-example">{@html examples.ERead}</span>
 			</p>
 			<p class="count-label">
-				works because it's a <code>fastMutable</code> store, which compared to
-				<code>mutable</code> is slightly more efficient because it swaps between two stable object references,
-				so there's no extra garbage created, but it doesn't compose as an immutable value stream, so
-				it may be a dangerously too-clever design
+				works because it's a <code
+					><a href="https://github.com/spiderspace/mutable/blob/main/src/lib/fastMutable.ts"
+						>fastMutable</a
+					></code
+				>
+				store, which compared to
+				<code
+					><a href="https://github.com/spiderspace/mutable/blob/main/src/lib/mutable.ts">mutable</a
+					></code
+				> is slightly more efficient because it swaps between two stable object references, so there's
+				no extra garbage created, but it doesn't compose as an immutable value stream, so it may be a
+				dangerously too-clever design
 			</p>
 		</div>
 		<pre class="panel-inset">
@@ -187,7 +205,10 @@
 	</section>
 
 	<h2>
-		F. <code>mutable</code> store with manual update and set
+		F. <code
+			><a href="https://github.com/spiderspace/mutable/blob/main/src/lib/mutable.ts">mutable</a
+			></code
+		> store with manual update and set
 	</h2>
 	<pre class="panel-inset">
 		{@html examples.FDef}
@@ -199,8 +220,12 @@
 				<span class="read-example">{@html examples.FRead}</span>
 			</p>
 			<p class="count-label">
-				works because it's a <code>mutable</code> store, but mutates the value directly and then
-				manually calls <code>.update()</code>, which may be an antipattern
+				works because it's a <code
+					><a href="https://github.com/spiderspace/mutable/blob/main/src/lib/mutable.ts">mutable</a
+					></code
+				>
+				store, but mutates the value directly and then manually calls <code>.update()</code>, which
+				may be an antipattern
 			</p>
 		</div>
 		<pre class="panel-inset">
