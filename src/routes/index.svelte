@@ -253,7 +253,12 @@
 	</section>
 
 	<hr />
-	<footer>
+	<footer class="markup">
+		<p>
+			want to discuss or help with some open questions? <a
+				href="https://github.com/spiderspace/spiderspace/discussions/5">go here</a
+			>
+		</p>
 		<p>
 			<a href="https://github.com/spiderspace/mutable"
 				>get the docs and public domain source code on GitHub</a
@@ -315,8 +320,8 @@
 	}
 	footer {
 		display: flex;
-		justify-content: center;
-		padding-bottom: var(--spacing_xl3);
+		align-items: center;
+		padding-bottom: var(--spacing_xl5);
 	}
 	@media (max-width: 600px) {
 		.count-with-label {
