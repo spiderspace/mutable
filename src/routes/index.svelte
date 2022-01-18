@@ -90,7 +90,7 @@
 	</section>
 
 	<h2>
-		B. cloned <code>writable</code> store
+		B. <code>writable</code> store with cloning
 	</h2>
 	<section style:--hue={toHue($writableMapCloned.get('a'))}>
 		<pre class="panel-inset">
