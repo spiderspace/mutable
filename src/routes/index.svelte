@@ -291,6 +291,7 @@
 	button {
 		font-weight: bold;
 		font-size: 1.5em;
+		padding: var(--spacing_xl3);
 		color: var(--orange);
 		border: 2px solid var(--orange);
 	}
