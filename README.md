@@ -4,6 +4,8 @@
 
 > **work in progress**: experimental
 
+deployed: [spiderspace.github.io/mutable](https://spiderspace.github.io/mutable)
+
 ## who is this for?
 
 Svelte users using or curious about
