@@ -12,7 +12,7 @@
 
 ## who is this for?
 
-Svelte users using
+Svelte users using or curious about
 [the `immutable` compiler option](https://svelte.dev/docs#compile-time-svelte-compile)
 who either:
 
