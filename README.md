@@ -84,8 +84,10 @@ with minimal overhead and good performance?
 
 We could try to enable `immutable` globally and opt out on a per-component basis, or vice versa,
 but this is error prone and adds a lot of mental overhead,
-because it forces us to think about the objects at the component level,
-instead of thinking about the objects locally where they're defined.
+because it forces us to think about the objects and
+`immutable` option in each component they appear,
+instead of thinking about the objects' store types locally where
+they're defined and relying on types to guide usage.
 If you enable `immutable` globally and forget to disable it
 in a component where, for example, you use a `WeakMap` in a `writable`,
 your component will silently fail to react to changes,
