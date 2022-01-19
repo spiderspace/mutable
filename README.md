@@ -92,10 +92,10 @@ If you enable `immutable` globally and forget to disable it
 in a component where, for example, you use a `WeakMap` in a `writable`,
 your component will silently fail to react to changes,
 which can be difficult to notice and diagnose.
-It's simpler to remember to wrap the `WeakMap` in a `mutable` store where it's declared
-than it is to remember to disable immutability everywhere it's used.
-Disabling `immutable` per-component also
-loses the efficiency of the `immutable` option for the rest of the component,
+It's less work and less error prone to wrap the `WeakMap` in a `mutable` store where it's declared
+than it is to disable immutability everywhere it's used.
+Disabling `immutable` also loses the efficiency
+of the `immutable` option for the rest of the component,
 and makes developers context-switch as they navigate the codebase.
 
 This project proposes two custom stores to address the usecases outlined above
