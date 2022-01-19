@@ -49,7 +49,7 @@ and the language makes this very terse, like binding to store properties:
 `<input bind:value={$store.text} />` is just great.
 Let's consider this class of problem solvable, a cost you're willing you accept;
 developers who choose immutability will need to avoid certain kinds of mutation.
-That's just part of the deal. For me this is not overly burdensome.
+That's just part of the deal, and it's a cost I choose to pay.
 
 However, immutability has presented me with two problems that motivated this project:
 
