@@ -15,6 +15,7 @@ export interface MutableUpdater<T> {
 /**
  * Creates a store wrapping a mutable `value`.
  * Useful for values that are expensive to copy, like large `Map`s,
+ * and values that cannot be cloned, like `WeakMap`s,
  * in combination with the Svelte `immutable` compiler flag.
  *
  * Typical usage mutates `value` inside the `updater` callback and returns nothing,
@@ -40,6 +41,7 @@ export const mutable = <T>(value: T): Mutable<T> => {
 		update: (updater) => {
 			if (updater) {
 				const updated = updater(value);
+				// TODO maybe don't do the second check? is cheaper than in `fastMutable`
 				if (updated !== undefined && updated !== value) {
 					value = updated;
 				}
