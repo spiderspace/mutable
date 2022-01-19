@@ -34,7 +34,9 @@ To learn more, see
 Better performance you say? Sounds great! ...right?
 Well, I must admit a huge caveat -- if we're not actually measuring anything,
 at best we're making an educated guess, and at worst we're cargo culting dubious practices
-with negative consequences for imperceptible benefit.
+with negative consequences for questionable benefit.
+Without benchmarking specific cases, it's possible that enabling `immutable` and cloning objects
+performs worse in some cases than simply mutating them with the option off.
 So I should be clear: I'm not advocating for enabling the `immutable` in your code.
 I'll only say that I've used it exclusively for a couple years now,
 and I've had a good time with it, except for the problems we're about to discuss,
