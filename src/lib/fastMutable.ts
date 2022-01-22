@@ -47,10 +47,8 @@ export const fastMutable = <T>(value: T): Mutable<T> => {
 			set(next);
 		},
 		set: (v) => {
-			swap = !swap;
-			const next = swap ? b : a;
-			value = next.value = v;
-			set(next);
+			value = a.value = b.value = v;
+			set((swap = !swap) ? b : a);
 		},
 	};
 };
