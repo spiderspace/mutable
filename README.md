@@ -2,6 +2,9 @@
 
 > using mutable values in Svelte stores with the `immutable` compiler option
 
+> **this prototype is now a library**:
+> [@feltcoop/svelte-mutable-store](https://github.com/feltcoop/svelte-mutable-store)
+
 > **work in progress**: experimental
 
 deployed: [spiderspace.github.io/mutable](https://spiderspace.github.io/mutable)
