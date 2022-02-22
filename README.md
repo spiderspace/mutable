@@ -23,7 +23,7 @@ who either:
 
 > How many users opt in to use the `immutable` compiler option?
 > I made [this Twitter poll](https://twitter.com/ryanatkn/status/1482390036943360010)
-> to get an idea, but remember, it's just a selection of Twitter users.
+> and got a small sample.
 
 ## problem?
 
