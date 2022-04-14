@@ -20,6 +20,10 @@
 	<header>
 		<h1><a href="https://github.com/spiderspace/mutable">mutable</a></h1>
 		<blockquote>
+			<strong>!! this prototype is now a library</strong>:
+			<a href="https://github.com/feltcoop/svelte-mutable-store">@feltcoop/svelte-mutable-store</a>
+		</blockquote>
+		<blockquote>
 			using mutable values in Svelte stores with the <code>immutable</code> compiler flag —
 			<a href="https://github.com/spiderspace/mutable">learn more on GitHub</a>
 		</blockquote>
